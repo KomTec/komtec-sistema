@@ -133,7 +133,7 @@
                         <div class="form-group row">
                             <div class="col-md-2 mb-2">
                                 <label>Status</label>
-                                <select class="custom-select" name="active">
+                                <select class="custom-select" name="vendedor_ativo">
                                     <option value="0">Inativo</option>
                                     <option value="1">Ativo</option>
                                 </select>

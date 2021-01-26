@@ -147,7 +147,7 @@
                         <div class="form-group row">
                             <div class="col-md-2 mb-2">
                                 <label>Status</label>
-                                <select class="custom-select" name="active">
+                                <select class="custom-select" name="cliente_ativo">
                                     <option value="0"<?php echo ($cliente->cliente_ativo == 0) ? 'selected' : ''; ?>>Inativo</option>
                                     <option value="1"<?php echo ($cliente->cliente_ativo == 1) ? 'selected' : ''; ?>>Ativo</option>
                                 </select>

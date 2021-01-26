@@ -23,10 +23,6 @@ class Vendedores extends CI_Controller {
             'vendedores' => $this->core_model->get_all('vendedores'),
         );
 
-        // echo '<pre>';
-        // print_r($data['vendedores']);
-        // exit();
-
         $this->load->view('layout/header', $data);
         $this->load->view('vendedores/index');
         $this->load->view('layout/footer');
