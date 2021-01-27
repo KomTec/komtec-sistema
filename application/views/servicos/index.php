@@ -55,39 +55,35 @@
             </div>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h2><a title="Cadastrar novo vendedor" href="<?php echo base_url('vendedores/add'); ?>" class="btn btn-outline-success btn-sm float-lg-right"><i class="fas fa-plus"></i></i>&nbsp; Novo</a>
+                    <h2><a title="Cadastrar novo serviço" href="<?php echo base_url('servicos/add'); ?>" class="btn btn-outline-success btn-sm float-lg-right"><i class="fas fa-plus"></i></i>&nbsp; Novo</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Nome Vendedor</th>
-                                    <th class="text-center">Matrícula</th>
-                                    <th class="text-center">Celular</th>
-                                    <th class="text-center">E-mail</th>
-                                    <th class="text-center">Data Cadastro</th>
+                                    <th class="text-center">Título do Serviço</th>
+                                    <th class="text-center">Valor</th>
+                                    <th class="text-center">Descrição</th>
                                     <th class="text-center">Status</th>                   
                                     <th class="text-center no-sort">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($vendedores as $vendedor): ?>
+                                <?php foreach ($servicos as $servico): ?>
                                     <tr>
-                                        <td class="text-center"><?php echo $vendedor->vendedor_nome_completo ?></td>
-                                        <td class="text-center pr-4"><?php echo $vendedor->vendedor_codigo ?></td>
-                                        <td class="text-center sp_celphones"><?php echo $vendedor->vendedor_celular ?></td>
-                                        <td class="text-center"><?php echo $vendedor->vendedor_email ?></td>
-                                        <td class="text-center"><?php echo $vendedor->vendedor_data_cadastro ?></td>                  
-                                        <td class="text-center pr-4"><?php echo ($vendedor->vendedor_ativo == 1 ? '<span class="badge bg-info text-white btn-sm">Ativo</span>' : '<span class="badge bg-secondary text-white btn-sm">Inativo</span>') ?></td>
+                                        <td class="text-center"><?php echo $servico->servico_nome ?></td>
+                                        <td class="text-center pr-4"><?php echo 'R$&nbsp;'.$servico->servico_preco ?></td>
+                                        <td class="text-center"><?php echo word_limiter($servico->servico_descricao, 10); ?></td>        
+                                        <td class="text-center pr-4"><?php echo ($servico->servico_ativo == 1 ? '<span class="badge bg-info text-white btn-sm">Ativo</span>' : '<span class="badge bg-secondary text-white btn-sm">Inativo</span>') ?></td>
 
                                         <td class="text-center">
-                                            <a title="Editar" href="<?php echo base_url('vendedores/edit/' . $vendedor->vendedor_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-user-edit"></i></a>
-                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#vendedor<?php echo $vendedor->vendedor_id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-user-times"></i></a>
+                                            <a title="Editar" href="<?php echo base_url('servicos/edit/' . $servico->servico_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-user-edit"></i></a>
+                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#servico<?php echo $servico->servico_id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-user-times"></i></a>
                                         </td>
                                     </tr>
 
-                                <div class="modal fade" id="vendedor<?php echo $vendedor->vendedor_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="servico<?php echo $servico->servico_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -99,7 +95,7 @@
                                             <div class="modal-body"><h5> Para excluír o registro clique em <strong>"Sim"</strong></h5></div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                                                <a class="btn btn-success btn-sm" href="<?php echo base_url('vendedores/del/' . $vendedor->vendedor_id) ?>">Sim</a>
+                                                <a class="btn btn-success btn-sm" href="<?php echo base_url('servicoes/del/' . $servico->servico_id) ?>">Sim</a>
                                             </div>
                                         </div>
                                     </div>

@@ -12,7 +12,7 @@
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php echo base_url('fornecedores'); ?>">Forncedores</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url('vendedores'); ?>">Vendedor</a></li>
                 <li class="breadcrumb-item"><a href="#"><?php echo $titulo; ?></a></li>
             </ol>					
         </nav>
@@ -24,61 +24,49 @@
 
                 <form class="user" method="POST" name="form_add">
 
-                    <?php if(isset($fornecedor)): ?>
-                    <p><strong><i class="fas fa-clock">&nbsp; &nbsp; Última atualização: </i>&nbsp;</strong><?php echo formata_data_banco_com_hora($fornecedor->fornecedor_data_alteracao) ?></p>
+                    <?php if (isset($vendedor)): ?>
+                        <p><strong><i class="fas fa-clock">&nbsp; &nbsp; Última atualização: </i>&nbsp;</strong><?php echo formata_data_banco_com_hora($vendedor->vendedor_data_alteracao) ?></p>
                     <?php endif; ?>
-                    
+
                     <fieldset class="mt-4 border p-2">
                         <legend class="font-small"><i class="fas fa-user-tag"></i>&nbsp;Dados Principais</legend>
 
                         <div class="form-group row mb-3">
 
                             <div class="col-md-6 mb-2">
-                                <label>Razão Social</label>
-                                <input type="text" class="form-control form-control-user" name="fornecedor_razao" placeholder="Razão Social" value="<?php echo set_value('fornecedor_razao'); ?>">
-                                <?php echo form_error('fornecedor_razao', '<small class="form-text text-danger">', '</small>'); ?>
+                                <label>Nome completo</label>
+                                <input type="text" class="form-control form-control-user" name="vendedor_nome_completo" placeholder="Nome completo" value="<?php echo set_value('vendedor_nome_completo'); ?>">
+                                <?php echo form_error('vendedor_nome_completo', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
-                            <div class="col-md-6 mb-2">
-                                <label>Nome Fantasia</label>
-                                <input type="text" class="form-control form-control-user-date" name="fornecedor_nome_fantasia" placeholder="Nome Fantasia " value="<?php echo set_value('fornecedor_nome_fantasia'); ?>">
-                                <?php echo form_error('fornecedor_nome_fantasia', '<small class="form-text text-danger">', '</small>'); ?>
-                            </div>						
+                            <div class="col-md-3 mb-2">
+                                <label>CPF</label>
+                                <input type="text" class="form-control form-control-user cpf" name="vendedor_cpf" placeholder="CPF" value="<?php echo set_value('vendedor_cpf'); ?>">
+                                <?php echo form_error('vendedor_cpf', '<small class="form-text text-danger">', '</small>'); ?>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <label>RG</label>
+                                <input type="text" class="form-control form-control-user-date ie" name="vendedor_rg" placeholder="RG " value="<?php echo set_value('vendedor_rg'); ?>">
+                                <?php echo form_error('vendedor_rg', '<small class="form-text text-danger">', '</small>'); ?>
+                            </div>  						
                         </div>
-                        <div class="form-group row mb-3">
-
-                            <div class="col-md-4 mb-2">
-                                <label>CNPJ</label>
-                                <input type="text" class="form-control form-control-user cnpj" name="fornecedor_cnpj" placeholder="CNPJ" value="<?php echo set_value('fornecedor_cnpj'); ?>">
-                                <?php echo form_error('fornecedor_cnpj', '<small class="form-text text-danger">', '</small>'); ?>
-                            </div>
-                            <div class="col-md-4 mb-2">
-                                <label>Inscrição Estadual</label>
-                                <input type="text" class="form-control form-control-user-date ie" name="fornecedor_ie" placeholder="Insc. Estadual " value="<?php echo set_value('fornecedor_ie'); ?>">
-                                <?php echo form_error('fornecedor_ie', '<small class="form-text text-danger">', '</small>'); ?>
-                            </div>
+                        <div class="form-group row mb-3">  
                             <div class="col-md-4 mb-2">
                                 <label>Telefone Fixo</label>
-                                <input type="text" class="form-control form-control-user sp_celphones" name="fornecedor_telefone" placeholder="Telefone " value="<?php echo set_value('fornecedor_telefone'); ?>">
-                                <?php echo form_error('fornecedor_telefone', '<small class="form-text text-danger">', '</small>'); ?>
-                            </div>
-                        </div>                        
-                        <div class="form-group row mb-3">
-                            <div class="col-md-4 mb-2">
-                                <label>Contato</label>
-                                <input type="text" class="form-control form-control-user" name="fornecedor_contato" placeholder="Contato" value="<?php echo set_value('fornecedor_contato'); ?>">
-                                <?php echo form_error('fornecedor_contato', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user sp_celphones" name="vendedor_telefone" placeholder="Telefone " value="<?php echo set_value('vendedor_telefone'); ?>">
+                                <?php echo form_error('vendedor_telefone', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                             <div class="col-md-4 mb-2">
                                 <label>Celular</label>
-                                <input type="text" class="form-control form-control-user sp_celphones" name="fornecedor_celular" placeholder="Celular " value="<?php echo set_value('fornecedor_celular'); ?>">
-                                <?php echo form_error('fornecedor_celular', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user sp_celphones" name="vendedor_celular" placeholder="Celular " value="<?php echo set_value('vendedor_celular'); ?>">
+                                <?php echo form_error('vendedor_celular', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                             <div class="col-md-4 mb-2">
                                 <label>E-mail</label>
-                                <input type="email" class="form-control form-control-user" name="fornecedor_email" placeholder="E-mail " value="<?php echo set_value('fornecedor_email'); ?>">
-                                <?php echo form_error('fornecedor_email', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="email" class="form-control form-control-user" name="vendedor_email" placeholder="E-mail " value="<?php echo set_value('vendedor_email'); ?>">
+                                <?php echo form_error('vendedor_email', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
-                        </div>
+                        </div>                       
+
                     </fieldset>
 
                     <fieldset class="mt-4 border p-2">
@@ -87,42 +75,42 @@
                         <div class="form-group row mb-3">
                             <div class="col-md-2 mb-2">
                                 <label>CEP</label>
-                                <input type="text" class="form-control form-control-user cep" name="fornecedor_cep" placeholder="CEP" value="<?php echo set_value('fornecedor_cep'); ?>">
-                                <?php echo form_error('fornecedor_cep', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user cep" name="vendedor_cep" placeholder="CEP" value="<?php echo set_value('vendedor_cep'); ?>">
+                                <?php echo form_error('vendedor_cep', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                             <div class="col-md-5 mb-2">
                                 <label>Logradouro</label>
-                                <input type="text" class="form-control form-control-user-date" name="fornecedor_endereco" placeholder="Logradouro " value="<?php echo set_value('fornecedor_endereco'); ?>">
-                                <?php echo form_error('fornecedor_numero_endereco', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user-date" name="vendedor_endereco" placeholder="Logradouro " value="<?php echo set_value('vendedor_endereco'); ?>">
+                                <?php echo form_error('vendedor_numero_endereco', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                             <div class="col-md-1 mb-2">
                                 <label>Número</label>
-                                <input type="text" class="form-control form-control-user-date" name="fornecedor_numero_endereco" placeholder=" " value="<?php echo set_value('fornecedor_numero_endereco'); ?>">
-                                <?php echo form_error('fornecedor_numero_endereco', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user-date" name="vendedor_numero_endereco" placeholder=" " value="<?php echo set_value('vendedor_numero_endereco'); ?>">
+                                <?php echo form_error('vendedor_numero_endereco', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                             <div class="col-md-4 mb-2">
                                 <label>Complemento</label>
-                                <input type="text" class="form-control form-control-user-date" name="fornecedor_complemento" placeholder="Complemento " value="<?php echo set_value('fornecedor_complemento'); ?>">
-                                <?php echo form_error('fornecedor_complemento', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user-date" name="vendedor_complemento" placeholder="Complemento " value="<?php echo set_value('vendedor_complemento'); ?>">
+                                <?php echo form_error('vendedor_complemento', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
                             <div class="col-md-6 mb-2">
                                 <label>Bairro</label>
-                                <input type="text" class="form-control form-control-user" name="fornecedor_bairro" placeholder="Bairro" value="<?php echo set_value('fornecedor_bairro'); ?>">
-                                <?php echo form_error('fornecedor_bairro', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user" name="vendedor_bairro" placeholder="Bairro" value="<?php echo set_value('vendedor_bairro'); ?>">
+                                <?php echo form_error('vendedor_bairro', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                             <div class="col-md-5 mb-2">
                                 <label>Cidade</label>
-                                <input type="text" class="form-control form-control-user" name="fornecedor_cidade" placeholder="Cidade" value="<?php echo set_value('fornecedor_cidade'); ?>">
-                                <?php echo form_error('fornecedor_cidade', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user" name="vendedor_cidade" placeholder="Cidade" value="<?php echo set_value('vendedor_cidade'); ?>">
+                                <?php echo form_error('vendedor_cidade', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                             <div class="col-md-1 mb-2">
                                 <label>UF</label>
-                                <input type="text" class="form-control form-control-user-date" name="fornecedor_estado" placeholder="UF " value="<?php echo set_value('fornecedor_estado'); ?>">
-                                <?php echo form_error('fornecedor_estado', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user-date" name="vendedor_estado" placeholder="UF " value="<?php echo set_value('vendedor_estado'); ?>">
+                                <?php echo form_error('vendedor_estado', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
-                            
+
                         </div>
 
                     </fieldset>
@@ -137,11 +125,15 @@
                                     <option value="0">Inativo</option>
                                     <option value="1">Ativo</option>
                                 </select>
-                        </div>	
-                            <div class="col-md-10">
+                            </div>	
+                            <div class="col-md-2 mb-2">
+                                <label>Matrícula</label>
+                                <input type="text" class="form-control form-control-user" name="vendedor_codigo" placeholder="Matrícula " value="<?php echo $vendedor_codigo; ?>" readonly="">                                
+                            </div>
+                            <div class="col-md-8">
                                 <label>Observações do Fornecedor</label>
-                                <textarea class="form-control form-control-user" name="fornecedor_obs" placeholder="Observações"><?php echo set_value('fornecedor_obs'); ?></textarea>
-                                <?php echo form_error('fornecedor_obs', '<small class="form-text text-danger">', '</small>'); ?>
+                                <textarea class="form-control form-control-user" name="vendedor_obs" placeholder="Observações"><?php echo set_value('vendedor_obs'); ?></textarea>
+                                <?php echo form_error('vendedor_obs', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                         </div>
 
