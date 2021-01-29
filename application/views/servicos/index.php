@@ -95,7 +95,7 @@
                                             <div class="modal-body"><h5> Para excluír o registro clique em <strong>"Sim"</strong></h5></div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                                                <a class="btn btn-success btn-sm" href="<?php echo base_url('servicoes/del/' . $servico->servico_id) ?>">Sim</a>
+                                                <a class="btn btn-success btn-sm" href="<?php echo base_url('servicos/del/' . $servico->servico_id) ?>">Sim</a>
                                             </div>
                                         </div>
                                     </div>

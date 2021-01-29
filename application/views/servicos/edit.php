@@ -27,36 +27,36 @@
                     <p><strong><i class="fas fa-clock">&nbsp; &nbsp; Última atualização: </i>&nbsp;</strong><?php echo formata_data_banco_com_hora($servico->servico_data_alteracao) ?></p>
 
                     <fieldset class="mt-4 border p-2">
-                        <legend class="font-small"><i class="fas fa-user-secret"></i>&nbsp;Dados do Serviço</legend>
+                        <legend class="font-small"><i class="fas fa-file-signature"></i>&nbsp;Dados do Serviço</legend>
 
                         <div class="form-group row mb-3">
 
                             <div class="col-md-4 mb-2">
                                 <label>Nome do Serviço</label>
-                                <input type="text" class="form-control form-control-user" name="servico_nome" placeholder="Nome do serviço" value="<?php echo set_value('servico_nome'); ?>">
+                                <input type="text" class="form-control form-control-user" name="servico_nome" placeholder="Nome do serviço" value="<?php echo $servico->servico_nome; ?>">
                                 <?php echo form_error('servico_nome', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                             <div class="col-md-4 mb-2">
                                 <label>Valor do Serviço</label>
-                                <input type="text" class="form-control form-control-user money" name="servico_preco" placeholder="Valor" value="<?php echo set_value('servico_preco'); ?>">
+                                <input type="text" class="form-control form-control-user money" name="servico_preco" placeholder="Valor" value="<?php echo $servico->servico_preco; ?>">
                                 <?php echo form_error('servico_preco', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
-                            
-                            <div class="col-md-4 mb-2">
+
+                             <div class="col-md-4 mb-2">
                                 <label>Status</label>
                                 <select class="custom-select" name="servico_ativo">
-                                    <option value="0">Inativo</option>
-                                    <option value="1">Ativo</option>
+                                    <option value="0"<?php echo ($servico->servico_ativo == 0) ? 'selected' : ''; ?>>Inativo</option>
+                                    <option value="1"<?php echo ($servico->servico_ativo == 1) ? 'selected' : ''; ?>>Ativo</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form_goup row mb-3">
                             <div class="col-md-12 mb-2">
                                 <label>Descrição</label>
-                                <textarea type="text" class="form-control form-control-user" name="servico_descricao" placeholder="Descrição " style="min-height: 100px!important"><?php echo set_value('servico_descricao'); ?></textarea>
+                                <textarea type="text" class="form-control form-control-user" name="servico_descricao" placeholder="Descrição " style="min-height: 100px!important"><?php echo $servico->servico_descricao; ?></textarea>
                                 <?php echo form_error('servico_descricao', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
-                            
+
                         </div>
                     </fieldset>
 

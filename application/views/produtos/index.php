@@ -55,41 +55,50 @@
             </div>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h2><a title="Cadastrar usuário" href="<?php echo base_url('usuarios/add'); ?>" class="btn btn-outline-success btn-sm float-lg-right"><i class="fas fa-user-plus"></i>&nbsp; Novo</a>
+                    <h2><a title="Cadastrar novo produto" href="<?php echo base_url('produtos/add'); ?>" class="btn btn-outline-success btn-sm float-lg-right"><i class="fas fa-plus"></i></i>&nbsp; Novo</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Nome</th>
-                                    <th>Celular</th>
-                                    <th>E-mail</th>
-                                    <th>Perfil</th>
-                                    <th class="text-center">Status</th>
-                                    <th>Empresa</th>
+                                    <th>Produto</th>
+                                    <th>Cód. Int.</th>
+                                    <th>Cód Orig.</th>
+                                    <th>Marca</th>
+                                    <th>Categoria</th>
+                                    <th>Valor Unit.</th>
+                                    <th>NCM</th> 
+                                    <th>Est. mín.</th>
+                                    <th>Estoque</th>                                                                       
+                                    <th class="text-center">Status</th>                   
                                     <th class="text-center no-sort">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($usuarios as $user): ?>
+                                <?php foreach ($produtos as $produto): ?>
                                     <tr>
-                                        <td><?php echo $user->first_name ?></td>
-                                        <td><?php echo $user->cell_phone ?></td>
-                                        <td><?php echo $user->email ?></td>
-                                        <td><?php echo ($this->ion_auth->is_admin($user->id) ? 'Administrador' : 'Vendedor'); ?></td>
+                                        <td><?php echo $produto->produto_descricao ?></td>  
+                                        <td><?php echo $produto->produto_codigo ?></td> 
+                                        <td><?php echo $produto->produto_codigo_original ?></td> 
+                                        <td class="text-center"><?php echo $produto->produto_marca ?></td>
+                                        <td class="text-center"><?php echo $produto->produto_categoria ?></td>
+                                        <td>R$&nbsp;<?php echo $produto->produto_preco_venda ?></td>  
+                                        <td class="text-center"><?php echo $produto->produto_ncm ?></td>
 
-                                        <td class="text-center pr-4"><?php echo ($user->active == 1 ? '<span class="badge bg-info text-white btn-sm">Ativo</span>' : '<span class="badge bg-secondary text-white btn-sm">Inativo</span>') ?></td>
+                                        <td class="text-center"><?php echo '<span class="badge bg-success text-white btn-sm">' . $produto->produto_estoque_minimo . '</span>' ?></td> 
 
-                                        <td><?php echo $user->company ?></td>
+                                        <td class="text-center"><?php echo ($produto->produto_estoque_minimo == $produto_qtde_estoque ? '<span class="badge bg-warning text-white btn-sm text-gray-900">' . $produto_qtde_estoque . '</span>' : '<span class="badge bg-info text-white btn-sm text-gray-900">' . $produto_qtde_estoque . '</span>'); ?></td>  
 
-                                        <td class="text-center">
-                                            <a title="Editar" href="<?php echo base_url('usuarios/edit/' . $user->id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-user-edit"></i></a>
-                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user<?php echo $user->id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-user-times"></i></a>
+                                        <td class="text-center pr-8"><?php echo ($produto->produto_ativo == 1 ? '<span class="badge bg-info text-white btn-sm">Ativo</span>' : '<span class="badge bg-secondary text-white btn-sm">Inativo</span>') ?></td>
+
+                                        <td class="text-center pro-8">
+                                            <a title="Editar" href="<?php echo base_url('produtos/edit/' . $produto->produto_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-user-edit"></i></a>
+                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#produto<?php echo $produto->produto_id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-user-times"></i></a>
                                         </td>
                                     </tr>
 
-                                <div class="modal fade" id="user<?php echo $user->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="produto<?php echo $produto->produto_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -98,10 +107,10 @@
                                                     <span aria-hidden="true">×</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body"><h5> Para excluír o usuário clique em <strong>"Sim"</strong></h5></div>
+                                            <div class="modal-body"><h5> Para excluír o registro clique em <strong>"Sim"</strong></h5></div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                                                <a class="btn btn-success btn-sm" href="<?php echo base_url('usuarios/del/' . $user->id) ?>">Sim</a>
+                                                <a class="btn btn-success btn-sm" href="<?php echo base_url('produtos/del/' . $produto->produto_id) ?>">Sim</a>
                                             </div>
                                         </div>
                                     </div>

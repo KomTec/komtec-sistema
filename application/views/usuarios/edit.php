@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-md-4">
                             <label>Celular</label>
-                            <input type="text" class="form-control form-control-user" name="cell_phone" placeholder="Seu celular" value="<?php echo $usuario->cell_phone; ?>">
+                            <input type="text" class="form-control form-control-user sp_celphones" name="cell_phone" placeholder="Seu celular" value="<?php echo $usuario->cell_phone; ?>">
                             <?php echo form_error('cell_phone', '<small class="form-text text-danger">', '</small>'); ?>
                         </div>	
                     </div>

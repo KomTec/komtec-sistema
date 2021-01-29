@@ -30,7 +30,7 @@ class Servicos extends CI_Controller {
 
     public function add() {
 
-        $this->form_validation->set_rules('servico_nome', '', 'trim|required|min_length[10]|max_length[145]');
+        $this->form_validation->set_rules('servico_nome', '', 'trim|required|min_length[10]|max_length[145]|is_unique[servicos.servico_nome]');
         $this->form_validation->set_rules('servico_preco', '', 'trim|required');
         $this->form_validation->set_rules('servico_descricao', '', 'trim|max_length[700]');
 
@@ -43,22 +43,19 @@ class Servicos extends CI_Controller {
                         'servico_preco',
                         'servico_descricao',
                         'servico_ativo',
-                        
                     ), $this->input->post()
             );
 
             $data = html_escape($data);
 
-            $this->core_model->update('servicos', $data, array('servico_id' => $servico_id));
+            $this->core_model->insert('servicos', $data);
 
             redirect(('servicos'));
         } else {
 
-            //mostrar o nome do serviço que está sendo atualizado.
-            $servico = $this->core_model->get_by_id('servicos', array('servico_id' => $servico_id));
             //erro de validação
             $data = array(
-                'titulo' => 'Atualizar cadastro do serviço ' . $servico->servico_nome,
+                'titulo' => 'Cadastrar novo serviço',
                 'scripts' => array(
                     'vendor/mask/jquery.mask.min.js',
                     'vendor/mask/app.js',
@@ -127,6 +124,18 @@ class Servicos extends CI_Controller {
                 $this->load->view('servicos/edit');
                 $this->load->view('layout/footer');
             }
+        }
+    }
+
+    public function del($servico_id = NULL) {
+        if (!$servico_id || !$this->core_model->get_by_id('servicos', array('servico_id' => $servico_id))) {
+
+            $this->session->set_flashdata('error', 'Serviço não encontrado!');
+            redirect('servicos');
+        } else {
+
+            $this->core_model->delete('servicos', array('servico_id' => $servico_id));
+            redirect('servicos');
         }
     }
 

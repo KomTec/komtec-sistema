@@ -12,9 +12,9 @@ class Produtos_model extends CI_Model
             'categorias.categoria_id',
             'categorias.categoria_nome as produto_categoria',
             'marcas.marca_id',
-            'marcas.marca.nome as produto_marca',
+            'marcas.marca_nome as produto_marca',
             'fornecedores.fornecedor_id',
-            'fornecedores.fornecedor.nome_fantasia as produto_fornecedor',
+            'fornecedores.fornecedor_nome_fantasia as produto_fornecedor',
 
         ]);
 
@@ -22,7 +22,7 @@ class Produtos_model extends CI_Model
         $this->db->join('marcas', 'marca_id = produto_marca_id', 'LEFT');
         $this->db->join('fornecedores', 'fornecedor_id = produto_fornecedor_id', 'LEFT');
 
-        return $this->db->get->('produtos')->result();
+        return $this->db->get('produtos')->result();
     }
 
 }

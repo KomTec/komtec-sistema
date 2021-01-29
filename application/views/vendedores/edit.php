@@ -27,7 +27,7 @@
                     <p><strong><i class="fas fa-clock">&nbsp; &nbsp; Última atualização: </i>&nbsp;</strong><?php echo formata_data_banco_com_hora($vendedor->vendedor_data_alteracao) ?></p>
 
                     <fieldset class="mt-4 border p-2">
-                        <legend class="font-small"><i class="fas fa-user-secret"></i>&nbsp;Dados Pessoais</legend>
+                        <legend class="font-small"><i class="fas fa-user-secret"></i>&nbsp;Dados do Serviço</legend>
 
                         <div class="form-group row mb-3">
 
