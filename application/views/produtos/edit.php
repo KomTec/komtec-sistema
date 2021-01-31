@@ -61,7 +61,7 @@
                                 <label>Categoria</label>
                                 <select class="custom-select" name="produto_categoria_id">
                                     <?php foreach ($categorias as $categoria): ?>
-                                    <option title="<?php echo ($categoria->categoria_ativa == 0 ? 'Categoria Desativada' : 'Categoria Ativa'); ?>" value="<?php echo $categoria->categoria_id ?>" <?php echo ($categoria->categoria_id == $produto->produto_categoria_id ? 'selected' : '') ?> <?php echo ($categoria->categoria_ativa == 0 ? 'disabled' : '') ?>><?php echo ($categoria->categoria_ativa == 0 ? $categoria->categoria_nome .'&nbsp;->&nbsp;Inativa' : $categoria->categoria_nome) ?></option>
+                                    <option  value="<?php echo $categoria->categoria_id ?>" <?php echo ($categoria->categoria_id == $produto->produto_categoria_id ? 'selected' : '') ?>><?php echo $categoria->categoria_nome; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <?php echo form_error('categoria_nome', '<small class="form-text text-danger">', '</small>'); ?>
@@ -71,7 +71,7 @@
                                 <label>Marca</label>
                                 <select class="custom-select" name="produto_marca_id">
                                     <?php foreach ($marcas as $marca): ?>
-                                    <option title="<?php echo ($marca->marca_ativa == 0 ? 'Marca Desativada' : 'Marca Ativa'); ?>" value="<?php echo $marca->marca_id ?>" <?php echo ($marca->marca_id == $produto->produto_marca_id ? 'selected' : '') ?> <?php echo ($marca->marca_ativa == 0 ? 'disabled' : '') ?>><?php echo ($marca->marca_ativa == 0 ? $marca->marca_nome .'&nbsp;->&nbsp;Inativa' : $marca->marca_nome) ?></option>
+                                    <option value="<?php echo $marca->marca_id ?>" <?php echo ($marca->marca_id == $produto->produto_marca_id ? 'selected' : '') ?>><?php echo $marca->marca_nome; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <?php echo form_error('marca_nome', '<small class="form-text text-danger">', '</small>'); ?>
@@ -80,7 +80,7 @@
                                 <label>Fornecedor</label>
                                 <select class="custom-select" name="fornecedor_ativo">
                                     <?php foreach ($fornecedores as $fornecedor): ?>
-                                    <option title="<?php echo ($fornecedor->fornecedor_ativo == 0 ? 'Fornecedor Desativado' : 'Fornecedor Ativo'); ?>" value="<?php echo $fornecedor->fornecedor_id ?>" <?php echo ($fornecedor->fornecedor_id == $produto->produto_fornecedor_id ? 'selected' : '') ?> <?php echo ($fornecedor->fornecedor_ativo == 0 ? 'disabled' : '') ?>><?php echo ($fornecedor->fornecedor_ativo == 0 ? $fornecedor->fornecedor_nome_fantasia .'&nbsp;->&nbsp;Inativo' : $fornecedor->fornecedor_nome_fantasia) ?></option>
+                                    <option value="<?php echo $fornecedor->fornecedor_id ?>" <?php echo ($fornecedor->fornecedor_id == $produto->produto_fornecedor_id ? 'selected' : '') ?>><?php echo $fornecedor->fornecedor_nome_fantasia; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <?php echo form_error('fornecedor_nome_fantasia', '<small class="form-text text-danger">', '</small>'); ?>
