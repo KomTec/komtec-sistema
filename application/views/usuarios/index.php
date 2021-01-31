@@ -84,8 +84,8 @@
                                         <td><?php echo $user->company ?></td>
 
                                         <td class="text-center">
-                                            <a title="Editar" href="<?php echo base_url('usuarios/edit/' . $user->id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-user-edit"></i></a>
-                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user<?php echo $user->id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-user-times"></i></a>
+                                            <a title="Editar" href="<?php echo base_url('usuarios/edit/' . $user->id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#user<?php echo $user->id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
 

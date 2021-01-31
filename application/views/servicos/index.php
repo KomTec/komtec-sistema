@@ -78,8 +78,8 @@
                                         <td class="text-center pr-4"><?php echo ($servico->servico_ativo == 1 ? '<span class="badge bg-info text-white btn-sm">Ativo</span>' : '<span class="badge bg-secondary text-white btn-sm">Inativo</span>') ?></td>
 
                                         <td class="text-center">
-                                            <a title="Editar" href="<?php echo base_url('servicos/edit/' . $servico->servico_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-user-edit"></i></a>
-                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#servico<?php echo $servico->servico_id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-user-times"></i></a>
+                                            <a title="Editar" href="<?php echo base_url('servicos/edit/' . $servico->servico_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#servico<?php echo $servico->servico_id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
 

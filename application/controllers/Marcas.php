@@ -42,10 +42,6 @@ class Marcas extends CI_Controller {
 
             if ($this->form_validation->run()) {
 
-                // echo '<pre>';
-                //print_r($this->input->post());
-                //exit;
-
                 $data = elements(
                         array(
                             'marca_nome',

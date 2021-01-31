@@ -22,7 +22,7 @@ class Categorias extends CI_Controller {
             ),
             'categorias' => $this->core_model->get_all('categorias'),
         );
-        
+
         //echo '<pre>';
         //print_r($data['categorias']);
         //exit();
@@ -31,7 +31,7 @@ class Categorias extends CI_Controller {
         $this->load->view('categorias/index');
         $this->load->view('layout/footer');
     }
-    
+
     public function edit($categoria_id = NULL) {
         if (!$categoria_id || !$this->core_model->get_by_id('categorias', array('categoria_id' => $categoria_id))) {
 
@@ -46,9 +46,17 @@ class Categorias extends CI_Controller {
 
             if ($this->form_validation->run()) {
 
-                // echo '<pre>';
-                //print_r($this->input->post());
-                //exit;
+                $categoria_ativa = $this->input->post('categoria_ativa');
+
+                if ($this->db->table_exists('produtos')) {
+
+                    if ($categoria_ativa == 0 && $this->core_model->get_by_id('produtos', array('produto_categoria_id' == $categoria_id, 'produto_ativo' => 1))) {
+
+                        $this->session->set_flashdata('error', 'Essa categoria não pode ser desativada, pois está sendo utilizada em PRODUTOS');
+
+                        redirect('categorias');
+                    }
+                }
 
                 $data = elements(
                         array(
@@ -130,7 +138,7 @@ class Categorias extends CI_Controller {
             $this->load->view('layout/footer');
         }
     }
-    
+
     public function del($categoria_id = NULL) {
         if (!$categoria_id || !$this->core_model->get_by_id('categorias', array('categoria_id' => $categoria_id))) {
 
@@ -142,6 +150,5 @@ class Categorias extends CI_Controller {
             redirect('categorias');
         }
     }
-    
-}
 
+}

@@ -69,7 +69,7 @@
                                     <th>Categoria</th>
                                     <th>Valor Unit.</th>
                                     <th>NCM</th> 
-                                    <th>Est. mín.</th>
+                                    <!--<!--  <th>Est. mín.</th>-->
                                     <th>Estoque</th>                                                                       
                                     <th class="text-center">Status</th>                   
                                     <th class="text-center no-sort">Ações</th>
@@ -78,7 +78,7 @@
                             <tbody>
                                 <?php foreach ($produtos as $produto): ?>
                                     <tr>
-                                        <td><?php echo $produto->produto_descricao ?></td>  
+                                        <td><?php echo $produto->produto_nome ?></td>  
                                         <td><?php echo $produto->produto_codigo ?></td> 
                                         <td><?php echo $produto->produto_codigo_original ?></td> 
                                         <td class="text-center"><?php echo $produto->produto_marca ?></td>
@@ -86,15 +86,19 @@
                                         <td>R$&nbsp;<?php echo $produto->produto_preco_venda ?></td>  
                                         <td class="text-center"><?php echo $produto->produto_ncm ?></td>
 
-                                        <td class="text-center"><?php echo '<span class="badge bg-success text-white btn-sm">' . $produto->produto_estoque_minimo . '</span>' ?></td> 
+                                        <!--<!-- Exemplo de marcação da quantidade mínima do estoque  -->
+                                        <!-- <td class="text-center"><?php echo '<span class="badge bg-success text-white btn-sm">' . $produto->produto_estoque_minimo . '</span>' ?></td> -->
 
-                                        <td class="text-center"><?php echo ($produto->produto_estoque_minimo == $produto_qtde_estoque ? '<span class="badge bg-warning text-white btn-sm text-gray-900">' . $produto_qtde_estoque . '</span>' : '<span class="badge bg-info text-white btn-sm text-gray-900">' . $produto_qtde_estoque . '</span>'); ?></td>  
+                                        <td class="text-center">
+                                            <?php echo ($produto->produto_estoque_minimo == $produto->produto_qtde_estoque ? '<span class="badge bg-warning text-white btn-sm text-gray-900">' . $produto->produto_qtde_estoque . '</span>' : '<span class="badge bg-info text-white btn-sm text-gray-900">' . $produto->produto_qtde_estoque . '</span>');?>
+                                        </td>
+
 
                                         <td class="text-center pr-8"><?php echo ($produto->produto_ativo == 1 ? '<span class="badge bg-info text-white btn-sm">Ativo</span>' : '<span class="badge bg-secondary text-white btn-sm">Inativo</span>') ?></td>
 
                                         <td class="text-center pro-8">
-                                            <a title="Editar" href="<?php echo base_url('produtos/edit/' . $produto->produto_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-user-edit"></i></a>
-                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#produto<?php echo $produto->produto_id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-user-times"></i></a>
+                                            <a title="Editar" href="<?php echo base_url('produtos/edit/' . $produto->produto_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#produto<?php echo $produto->produto_id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-trash-alt"></i></i></a>
                                         </td>
                                     </tr>
 
@@ -115,7 +119,7 @@
                                         </div>
                                     </div>
                                 </div> 
-                            <?php endforeach; ?>
+<?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
