@@ -33,68 +33,68 @@ class Fornecedores extends CI_Controller {
     }
 
     public function add() {
-        
+
         $this->form_validation->set_rules('fornecedor_razao', '', 'trim|required|min_length[4]|max_length[200]|is_unique[fornecedores.fornecedor_razao]');
-            $this->form_validation->set_rules('fornecedor_nome_fantasia', '', 'trim|required|min_length[4]|max_length[145]|is_unique[fornecedores.fornecedor_nome_fantasia]');
-            $this->form_validation->set_rules('fornecedor_cnpj', '', 'trim|required|exact_length[18]|is_unique[fornecedores.fornecedor_cnpj]|callback_valida_fornecedor_cnpj');
-            $this->form_validation->set_rules('fornecedor_ie', '', 'trim|required|max_length[20]|is_unique[fornecedores.fornecedor_ie]');
-            $this->form_validation->set_rules('fornecedor_email', '', 'trim|required|is_unique[fornecedores.fornecedor_email]|valid_email|max_length[100]|callback_check_fornecedor_email');
-            $this->form_validation->set_rules('fornecedor_telefone', '', 'trim|required|max_length[14]|callback_check_fornecedor_telefone');
-            $this->form_validation->set_rules('fornecedor_celular', '', 'trim|required|max_length[15]|callback_check_fornecedor_celular');
-            $this->form_validation->set_rules('fornecedor_cep', '', 'trim|required|exact_length[9]');
-            $this->form_validation->set_rules('fornecedor_endereco', '', 'trim|required|max_length[155]');
-            $this->form_validation->set_rules('fornecedor_numero_endereco', '', 'trim|max_length[20]');
-            $this->form_validation->set_rules('fornecedor_bairro', '', 'trim|required|max_length[45]');
-            $this->form_validation->set_rules('fornecedor_complemento', '', 'trim|max_length[145]');
-            $this->form_validation->set_rules('fornecedor_cidade', '', 'trim|required|max_length[50]');
-            $this->form_validation->set_rules('fornecedor_estado', '', 'trim|required|exact_length[2]');
-            $this->form_validation->set_rules('fornecedor_obs', '', 'max_length[500]');
+        $this->form_validation->set_rules('fornecedor_nome_fantasia', '', 'trim|required|min_length[4]|max_length[145]|is_unique[fornecedores.fornecedor_nome_fantasia]');
+        $this->form_validation->set_rules('fornecedor_cnpj', '', 'trim|required|exact_length[18]|is_unique[fornecedores.fornecedor_cnpj]|callback_valida_fornecedor_cnpj');
+        $this->form_validation->set_rules('fornecedor_ie', '', 'trim|required|max_length[20]|is_unique[fornecedores.fornecedor_ie]');
+        $this->form_validation->set_rules('fornecedor_email', '', 'trim|required|is_unique[fornecedores.fornecedor_email]|valid_email|max_length[100]|callback_check_fornecedor_email');
+        $this->form_validation->set_rules('fornecedor_telefone', '', 'trim|required|max_length[14]|callback_check_fornecedor_telefone');
+        $this->form_validation->set_rules('fornecedor_celular', '', 'trim|required|max_length[15]|callback_check_fornecedor_celular');
+        $this->form_validation->set_rules('fornecedor_cep', '', 'trim|required|exact_length[9]');
+        $this->form_validation->set_rules('fornecedor_endereco', '', 'trim|required|max_length[155]');
+        $this->form_validation->set_rules('fornecedor_numero_endereco', '', 'trim|max_length[20]');
+        $this->form_validation->set_rules('fornecedor_bairro', '', 'trim|required|max_length[45]');
+        $this->form_validation->set_rules('fornecedor_complemento', '', 'trim|max_length[145]');
+        $this->form_validation->set_rules('fornecedor_cidade', '', 'trim|required|max_length[50]');
+        $this->form_validation->set_rules('fornecedor_estado', '', 'trim|required|exact_length[2]');
+        $this->form_validation->set_rules('fornecedor_obs', '', 'max_length[500]');
 
-            if ($this->form_validation->run()) {
-                
-                $data = elements(
-                        array(
-                            'fornecedor_razao',
-                            'fornecedor_nome_fantasia',
-                            'fornecedor_cnpj',
-                            'fornecedor_ie',
-                            'fornecedor_email',
-                            'fornecedor_telefone',
-                            'fornecedor_celular',
-                            'fornecedor_contato',
-                            'fornecedor_endereco',
-                            'fornecedor_numero_endereco',
-                            'fornecedor_complemento',
-                            'fornecedor_bairro',
-                            'fornecedor_cep',
-                            'fornecedor_cidade',
-                            'fornecedor_estado',
-                            'fornecedor_ativo',
-                            'fornecedor_obs',
-                        ), $this->input->post()
-                );
+        if ($this->form_validation->run()) {
 
-                $data['fornecedor_estado'] = strtoupper($this->input->post('fornecedor_estado'));
+            $data = elements(
+                    array(
+                        'fornecedor_razao',
+                        'fornecedor_nome_fantasia',
+                        'fornecedor_cnpj',
+                        'fornecedor_ie',
+                        'fornecedor_email',
+                        'fornecedor_telefone',
+                        'fornecedor_celular',
+                        'fornecedor_contato',
+                        'fornecedor_endereco',
+                        'fornecedor_numero_endereco',
+                        'fornecedor_complemento',
+                        'fornecedor_bairro',
+                        'fornecedor_cep',
+                        'fornecedor_cidade',
+                        'fornecedor_estado',
+                        'fornecedor_ativo',
+                        'fornecedor_obs',
+                    ), $this->input->post()
+            );
 
-                $data = html_escape($data);
+            $data['fornecedor_estado'] = strtoupper($this->input->post('fornecedor_estado'));
 
-                $this->core_model->insert('fornecedores', $data);
+            $data = html_escape($data);
 
-                redirect(('fornecedores'));
-            } else {               
-                //erro de validação
-                $data = array(
-                    'titulo' => 'Cadastrar novo fornecedor',
-                    'scripts' => array(
-                        'vendor/mask/jquery.mask.min.js',
-                        'vendor/mask/app.js',
-                    ),
-                );
-                
-                $this->load->view('layout/header', $data);
-                $this->load->view('fornecedores/add');
-                $this->load->view('layout/footer');
-            }
+            $this->core_model->insert('fornecedores', $data);
+
+            redirect(('fornecedores'));
+        } else {
+            //erro de validação
+            $data = array(
+                'titulo' => 'Cadastrar novo fornecedor',
+                'scripts' => array(
+                    'vendor/mask/jquery.mask.min.js',
+                    'vendor/mask/app.js',
+                ),
+            );
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('fornecedores/add');
+            $this->load->view('layout/footer');
+        }
     }
 
     public function edit($fornecedor_id = NULL) {
@@ -122,19 +122,23 @@ class Fornecedores extends CI_Controller {
             $this->form_validation->set_rules('fornecedor_obs', '', 'max_length[500]');
 
             if ($this->form_validation->run()) {
- 
+
+                //echo '<pre>';
+                //print_r($this->input->post());
+                //exit;
+
                 $fornecedor_ativo = $this->input->post('fornecedor_ativo');
 
                 if ($this->db->table_exists('produtos')) {
 
                     if ($fornecedor_ativo == 0 && $this->core_model->get_by_id('produtos', array('produto_fornecedor_id' == $fornecedor_id, 'produto_ativo' => 1))) {
 
-                        $this->session->set_flashdata('error', 'Esse fornecedor não pode ser desativado, pois está sendo utilizado em PRODUTOS');
+                        $this->session->set_flashdata('error', 'Esse fornecedor não pode ser desativado, pois está sendo utilizado em Produtos');
 
                         redirect('fornecedores');
                     }
                 }
-                
+
                 $data = elements(
                         array(
                             'fornecedor_razao',
@@ -170,14 +174,14 @@ class Fornecedores extends CI_Controller {
                 $fornecedor = $this->core_model->get_by_id('fornecedores', array('fornecedor_id' => $fornecedor_id));
                 //erro de validação
                 $data = array(
-                    'titulo' => 'Atualizar cadastro do fornecedor '.$fornecedor->fornecedor_nome_fantasia,
+                    'titulo' => 'Atualizar cadastro do fornecedor ' . $fornecedor->fornecedor_nome_fantasia,
                     'scripts' => array(
                         'vendor/mask/jquery.mask.min.js',
                         'vendor/mask/app.js',
                     ),
                     'fornecedor' => $fornecedor,
                 );
-                
+
                 $this->load->view('layout/header', $data);
                 $this->load->view('fornecedores/edit');
                 $this->load->view('layout/footer');

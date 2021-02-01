@@ -78,7 +78,7 @@
                             </div>
                             <div class="col-md-4 mb-2">
                                 <label>Fornecedor</label>
-                                <select class="custom-select" name="fornecedor_ativo">
+                                <select class="custom-select" name="produto_fornecedor_id">
                                     <?php foreach ($fornecedores as $fornecedor): ?>
                                     <option value="<?php echo $fornecedor->fornecedor_id ?>" <?php echo ($fornecedor->fornecedor_id == $produto->produto_fornecedor_id ? 'selected' : '') ?>><?php echo $fornecedor->fornecedor_nome_fantasia; ?></option>
                                     <?php endforeach; ?>

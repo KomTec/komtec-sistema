@@ -41,14 +41,18 @@ class Marcas extends CI_Controller {
 
 
             if ($this->form_validation->run()) {
-                
+
+                //echo '<pre>';
+                //print_r($this->input->post());
+                //exit;
+
                 $marca_ativa = $this->input->post('marca_ativa');
 
                 if ($this->db->table_exists('produtos')) {
 
                     if ($marca_ativa == 0 && $this->core_model->get_by_id('produtos', array('produto_marca_id' == $marca_id, 'produto_ativo' => 1))) {
 
-                        $this->session->set_flashdata('error', 'Essa marca não pode ser desativada, pois está sendo utilizada em PRODUTOS');
+                        $this->session->set_flashdata('error', 'Essa marca não pode ser desativada, pois está sendo utilizada em Produtos');
 
                         redirect('marcas');
                     }
@@ -134,7 +138,7 @@ class Marcas extends CI_Controller {
             $this->load->view('layout/footer');
         }
     }
-    
+
     public function del($marca_id = NULL) {
         if (!$marca_id || !$this->core_model->get_by_id('marcas', array('marca_id' => $marca_id))) {
 

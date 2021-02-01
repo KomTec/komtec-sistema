@@ -24,7 +24,7 @@
 
                         <div class="col-md-12">
 
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <div class="alert alert-success fade show" role="alert">
                                 <strong><i class="far fa-smile-wink"></i>&nbsp; &nbsp;<?php echo $message; ?></strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -41,7 +41,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <div class="alert alert-danger fade show" role="alert">
                                 <strong><i class="fas fa-exclamation-triangle"></i>&nbsp; &nbsp;<?php echo $message; ?></strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -81,10 +81,10 @@
                                         <td><?php echo $produto->produto_nome ?></td>  
                                         <td><?php echo $produto->produto_codigo ?></td> 
                                         <td><?php echo $produto->produto_codigo_original ?></td> 
-                                        <td class="text-center"><?php echo $produto->produto_marca ?></td>
-                                        <td class="text-center"><?php echo $produto->produto_categoria ?></td>
+                                        <td><?php echo $produto->produto_marca ?></td>
+                                        <td><?php echo $produto->produto_categoria ?></td>
                                         <td>R$&nbsp;<?php echo $produto->produto_preco_venda ?></td>  
-                                        <td class="text-center"><?php echo $produto->produto_ncm ?></td>
+                                        <td><?php echo $produto->produto_ncm ?></td>
 
                                         <!--<!-- Exemplo de marcação da quantidade mínima do estoque  -->
                                         <!-- <td class="text-center"><?php echo '<span class="badge bg-success text-white btn-sm">' . $produto->produto_estoque_minimo . '</span>' ?></td> -->
