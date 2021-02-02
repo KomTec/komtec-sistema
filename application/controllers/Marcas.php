@@ -50,9 +50,9 @@ class Marcas extends CI_Controller {
 
                 if ($this->db->table_exists('produtos')) {
 
-                    if ($marca_ativa == 0 && $this->core_model->get_by_id('produtos', array('produto_marca_id' == $marca_id, 'produto_ativo' => 1))) {
+                    if ($marca_ativa == 0 && $this->core_model->get_by_id('produtos', array('produto_marca_id' => $marca_id, 'produto_ativo' => 1))) {
 
-                        $this->session->set_flashdata('error', 'Essa marca não pode ser desativada, pois está sendo utilizada em Produtos');
+                        $this->session->set_flashdata('info', 'Essa marca não pode ser desativada, pois está sendo utilizada em <i class="fab fa-product-hunt"></i>&nbsp; Produtos');
 
                         redirect('marcas');
                     }

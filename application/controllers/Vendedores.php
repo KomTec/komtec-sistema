@@ -56,11 +56,6 @@ class Vendedores extends CI_Controller {
 
         if ($this->form_validation->run()) {
 
-            //echo '<pre>';
-            //print_r($this->input->post());
-            //exit;
-
-
             $data = elements(
                     array(
                         'vendedor_nome_completo',
@@ -142,10 +137,6 @@ class Vendedores extends CI_Controller {
             $this->form_validation->set_rules('vendedor_obs', '', 'max_length[500]');
 
             if ($this->form_validation->run()) {
-
-                // echo '<pre>';
-                //print_r($this->input->post());
-                //exit;
 
                 $data = elements(
                         array(

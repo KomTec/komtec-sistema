@@ -54,9 +54,9 @@ class Categorias extends CI_Controller {
 
                 if ($this->db->table_exists('produtos')) {
 
-                    if ($categoria_ativa == 0 && $this->core_model->get_by_id('produtos', array('produto_categoria_id' == $categoria_id, 'produto_ativo' => 1))) {
+                    if ($categoria_ativa == 0 && $this->core_model->get_by_id('produtos', array('produto_categoria_id' => $categoria_id, 'produto_ativo' => 1))) {
 
-                        $this->session->set_flashdata('error', 'Essa categoria não pode ser desativada, pois está sendo utilizada em Produtos');
+                        $this->session->set_flashdata('info', 'Essa categoria não pode ser desativada, pois está sendo utilizada em <i class="fab fa-product-hunt"></i>&nbsp; Produtos');
 
                         redirect('categorias');
                     }
