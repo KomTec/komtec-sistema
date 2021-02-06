@@ -164,7 +164,7 @@
                     </div>
 
                     <button title="Salvar" type="submit" class="btn btn-outline-success btn-sm">Salvar</button>
-                    <a title="Cancelar" href="<?php echo base_url($this->router->fetch_class()); ?>" class="btn btn-outline-danger btn-sm ml-2"><i class="fas fa-power-off"></i>&nbsp;Cancelar</a>
+                    <a title="Cancelar" href="<?php echo base_url($this->router->fetch_class()); ?>" class="btn btn-outline-danger btn-sm ml-2"><i class="fas fa-undo-alt"></i>&nbsp;Voltar</a>
                 </form>
             </div>
 

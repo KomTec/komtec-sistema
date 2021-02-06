@@ -73,7 +73,7 @@
                                 <?php foreach ($servicos as $servico): ?>
                                     <tr>
                                         <td class="text-center"><?php echo $servico->servico_nome ?></td>
-                                        <td class="text-center pr-4"><?php echo 'R$&nbsp;'.$servico->servico_preco ?></td>
+                                        <td class="text-center pr-4"><?php echo 'R$&nbsp;' . $servico->servico_preco ?></td>
                                         <td class="text-center"><?php echo word_limiter($servico->servico_descricao, 10); ?></td>        
                                         <td class="text-center pr-4"><?php echo ($servico->servico_ativo == 1 ? '<span class="badge bg-info text-white btn-sm">Ativo</span>' : '<span class="badge bg-secondary text-white btn-sm">Inativo</span>') ?></td>
 

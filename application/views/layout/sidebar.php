@@ -27,6 +27,34 @@
     <div class="sidebar-heading">
         Módulos
     </div>
+    
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+            <i class="fas fa-hand-holding-usd"></i>
+            <span>Vendas</span>
+        </a>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Escolha uma opção:</h6>
+                <a title="Gestão de Orçamentos" class="collapse-item" href="<?php echo base_url('orcamentos') ?>"><i class="fas fa-file-invoice-dollar text-gray-900"></i>&nbsp;&nbsp;Orçamentos</a>
+                <a title="Gestão de Vendas" class="collapse-item" href="<?php echo base_url('vendas') ?>"><i class="fas fa-funnel-dollar text-gray-900"></i>&nbsp;&nbsp;Vendas</a> 
+            </div>
+        </div>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+            <i class="fas fa-money-check-alt"></i>
+            <span>Financeiro</span>
+        </a>
+        <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Escolha uma opção:</h6>
+                <a title="Gestão de Contas a Pagar" class="collapse-item" href="<?php echo base_url('pagar') ?>"><i class="fas fa-file-invoice-dollar text-gray-900"></i>&nbsp;&nbsp;Contas a Pagar</a>
+                <a title="Gestão de Contas a Receber" class="collapse-item" href="<?php echo base_url('receber') ?>"><i class="fas fa-hand-holding-usd text-gray-900"></i>&nbsp;&nbsp;Contas a Receber</a> 
+            </div>
+        </div>
+    </li>
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">

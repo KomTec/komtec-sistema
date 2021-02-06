@@ -52,7 +52,7 @@ class Produtos extends CI_Controller {
                         'produto_codigo_original',
                         'produto_nome',
                         'produto_descricao',
-                        'produto_produto_id',
+                        'produto_id',
                         'produto_marca_id',
                         'produto_fornecedor_id',
                         'produto_unidade',
@@ -79,11 +79,11 @@ class Produtos extends CI_Controller {
                     'vendor/mask/jquery.mask.min.js',
                     'vendor/mask/app.js',
                 ),
-                'produto_codigo' =>$this->core_model->generate_unique_code('produtos', 'numeric', 8, 'produto_codigo'),
-                'produto_codigo_barras' =>$this->core_model->generate_unique_code('produtos', 'numeric', 30, 'produto_codigo_barras'),
-                'marcas' => $this->core_model->get_all('marcas'),
-                'produtos' => $this->core_model->get_all('produtos'),
-                'fornecedores' => $this->core_model->get_all('fornecedores'),
+                'produto_codigo' => $this->core_model->generate_unique_code('produtos', 'numeric', 8, 'produto_codigo'),
+                'produto_codigo_barras' => $this->core_model->generate_unique_code('produtos', 'numeric', 30, 'produto_codigo_barras'),
+                'marcas' => $this->core_model->get_all('marcas', array('marca_ativa' => 1)),
+                'categorias' => $this->core_model->get_all('categorias', array('categoria_ativa' => 1)),
+                'fornecedores' => $this->core_model->get_all('fornecedores', array('fornecedor_ativo' => 1)),
             );
 
             $this->load->view('layout/header', $data);
@@ -118,7 +118,7 @@ class Produtos extends CI_Controller {
                             'produto_codigo_original',
                             'produto_nome',
                             'produto_descricao',
-                            'produto_produto_id',
+                            'produto_id',
                             'produto_marca_id',
                             'produto_fornecedor_id',
                             'produto_unidade',
@@ -141,17 +141,17 @@ class Produtos extends CI_Controller {
                 //Erro de validação
                 //mostrar o nome do Fornecedor que está sendo atualizado.
                 $produto = $this->core_model->get_by_id('produtos', array('produto_id' => $produto_id));
-                
+
                 $data = array(
-                    'titulo' => 'Atualizar cadastro do produto ' . $produto->produto_descricao,
+                    'titulo' => 'Atualizar cadastro do produto ' . $produto->produto_nome,
                     'scripts' => array(
                         'vendor/mask/jquery.mask.min.js',
                         'vendor/mask/app.js',
                     ),
                     'produto' => $this->core_model->get_by_id('produtos', array('produto_id' => $produto_id)),
-                    'marcas' => $this->core_model->get_all('marcas'),
-                    'produtos' => $this->core_model->get_all('produtos'),
-                    'fornecedores' => $this->core_model->get_all('fornecedores'),
+                    'marcas' => $this->core_model->get_all('marcas', array('marca_ativa' => 1)),
+                    'categorias' => $this->core_model->get_all('categorias', array('categoria_ativa' => 1)),
+                    'fornecedores' => $this->core_model->get_all('fornecedores', array('fornecedor_ativo' => 1)),
                 );
 
                 $this->load->view('layout/header', $data);
@@ -160,7 +160,7 @@ class Produtos extends CI_Controller {
             }
         }
     }
-    
+
     public function check_produto_codigo_original($produto_codigo_original) {
 
         $produto_id = $this->input->post('produto_id');
@@ -176,10 +176,10 @@ class Produtos extends CI_Controller {
     public function check_produto_preco_venda($produto_preco_venda) {
 
         $produto_preco_custo = $this->input->post('produto_preco_custo');
-        
+
         $produto_preco_custo = str_replace('.', '', $produto_preco_custo);
         $produto_preco_venda = str_replace('.', '', $produto_preco_venda);
-        
+
         $produto_preco_custo = str_replace(',', '', $produto_preco_custo);
         $produto_preco_venda = str_replace(',', '', $produto_preco_venda);
 
@@ -192,7 +192,7 @@ class Produtos extends CI_Controller {
             return TRUE;
         }
     }
-    
+
     public function del($produto_id = NULL) {
         if (!$produto_id || !$this->core_model->get_by_id('produtos', array('produto_id' => $produto_id))) {
 

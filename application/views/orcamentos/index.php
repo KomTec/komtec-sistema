@@ -55,7 +55,7 @@
             </div>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h2><a title="Cadastrar novo produto" href="<?php echo base_url('produtos/add'); ?>" class="btn btn-outline-success btn-sm float-lg-right"><i class="fas fa-plus"></i></i>&nbsp; Novo</a>
+                    <h2><a title="Cadastrar novo orcamento" href="<?php echo base_url('orcamentos/add'); ?>" class="btn btn-outline-success btn-sm float-lg-right"><i class="fas fa-plus"></i></i>&nbsp; Novo</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -76,33 +76,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($produtos as $produto): ?>
+                                <?php foreach ($orcamentos as $orcamento): ?>
                                     <tr>
-                                        <td><?php echo $produto->produto_nome ?></td>  
-                                        <td><?php echo $produto->produto_codigo ?></td> 
-                                        <td><?php echo $produto->produto_codigo_original ?></td> 
-                                        <td><?php echo $produto->produto_marca ?></td>
-                                        <td><?php echo $produto->produto_categoria ?></td>
-                                        <td><?php echo 'R$&nbsp;'.$produto->produto_preco_venda ?></td>  
-                                        <td><?php echo $produto->produto_ncm ?></td>
+                                        <td><?php echo $orcamento->orcamento_nome ?></td>  
+                                        <td><?php echo $orcamento->orcamento_codigo ?></td> 
+                                        <td><?php echo $orcamento->orcamento_codigo_original ?></td> 
+                                        <td><?php echo $orcamento->orcamento_marca ?></td>
+                                        <td><?php echo $orcamento->orcamento_categoria ?></td>
+                                        <td>R$&nbsp;<?php echo $orcamento->orcamento_preco_venda ?></td>  
+                                        <td><?php echo $orcamento->orcamento_ncm ?></td>
 
                                         <!--<!-- Exemplo de marcação da quantidade mínima do estoque  -->
-                                        <!-- <td class="text-center"><?php echo '<span class="badge bg-success text-white btn-sm">' . $produto->produto_estoque_minimo . '</span>' ?></td> -->
+                                        <!-- <td class="text-center"><?php echo '<span class="badge bg-success text-white btn-sm">' . $orcamento->orcamento_estoque_minimo . '</span>' ?></td> -->
 
                                         <td class="text-center">
-                                            <?php echo ($produto->produto_estoque_minimo == $produto->produto_qtde_estoque ? '<span class="badge bg-warning text-white btn-sm text-gray-900">' . $produto->produto_qtde_estoque . '</span>' : '<span class="badge bg-info text-white btn-sm text-gray-900">' . $produto->produto_qtde_estoque . '</span>');?>
+                                            <?php echo ($orcamento->orcamento_estoque_minimo == $orcamento->orcamento_qtde_estoque ? '<span class="badge bg-warning text-white btn-sm text-gray-900">' . $orcamento->orcamento_qtde_estoque . '</span>' : '<span class="badge bg-info text-white btn-sm text-gray-900">' . $orcamento->orcamento_qtde_estoque . '</span>');?>
                                         </td>
 
 
-                                        <td class="text-center pr-8"><?php echo ($produto->produto_ativo == 1 ? '<span class="badge bg-info text-white btn-sm">Ativo</span>' : '<span class="badge bg-secondary text-white btn-sm">Inativo</span>') ?></td>
+                                        <td class="text-center pr-8"><?php echo ($orcamento->orcamento_ativo == 1 ? '<span class="badge bg-info text-white btn-sm">Ativo</span>' : '<span class="badge bg-secondary text-white btn-sm">Inativo</span>') ?></td>
 
                                         <td class="text-center pro-8">
-                                            <a title="Editar" href="<?php echo base_url('produtos/edit/' . $produto->produto_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-edit"></i></a>
-                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#produto<?php echo $produto->produto_id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-trash-alt"></i></i></a>
+                                            <a title="Editar" href="<?php echo base_url('orcamentos/edit/' . $orcamento->orcamento_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#orcamento<?php echo $orcamento->orcamento_id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-trash-alt"></i></i></a>
                                         </td>
                                     </tr>
 
-                                <div class="modal fade" id="produto<?php echo $produto->produto_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="orcamento<?php echo $orcamento->orcamento_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -114,7 +114,7 @@
                                             <div class="modal-body"><h5> Para excluír o registro clique em <strong>"Sim"</strong></h5></div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                                                <a class="btn btn-success btn-sm" href="<?php echo base_url('produtos/del/' . $produto->produto_id) ?>">Sim</a>
+                                                <a class="btn btn-success btn-sm" href="<?php echo base_url('orcamentos/del/' . $orcamento->orcamento_id) ?>">Sim</a>
                                             </div>
                                         </div>
                                     </div>
