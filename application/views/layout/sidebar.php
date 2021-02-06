@@ -44,13 +44,13 @@
     
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-            <i class="fas fa-money-check-alt"></i>
+            <i class="fas fa-wallet"></i>
             <span>Financeiro</span>
         </a>
         <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Escolha uma opção:</h6>
-                <a title="Gestão de Contas a Pagar" class="collapse-item" href="<?php echo base_url('pagar') ?>"><i class="fas fa-file-invoice-dollar text-gray-900"></i>&nbsp;&nbsp;Contas a Pagar</a>
+                <a title="Gestão de Contas a Pagar" class="collapse-item" href="<?php echo base_url('pagar') ?>"><i class="fas fa-money-bill-alt text-gray-900"></i>&nbsp;&nbsp;Contas a Pagar</a>
                 <a title="Gestão de Contas a Receber" class="collapse-item" href="<?php echo base_url('receber') ?>"><i class="fas fa-hand-holding-usd text-gray-900"></i>&nbsp;&nbsp;Contas a Receber</a> 
             </div>
         </div>

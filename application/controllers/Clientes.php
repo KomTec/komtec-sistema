@@ -176,10 +176,14 @@ class Clientes extends CI_Controller {
             $this->form_validation->set_rules('cliente_obs', '', 'max_length[500]');
 
             if ($this->form_validation->run()) {
-
-                //echo '<pre>';
-                //print_r($this->input->post());
-                //exit();
+                
+                $cliente_ativo = $this->input->post('cliente_ativo');                
+                if ($this->db->table_exists('contas_receber')) {
+                    if ($cliente_ativo == 0 && $this->core_model->get_by_id('contas_receber', array('conta_receber_cliente_id' => $cliente_id, 'conta_receber_status' => 0))) {
+                        $this->session->set_flashdata('info', 'Esse cliente não pode ser desativado, pois está sendo utilizado em <i class="fas fa-hand-holding-usd"></i>&nbsp; Contas a Receber');
+                        redirect('clientes');
+                    }
+                }
 
                 $data = elements(
                         array(
