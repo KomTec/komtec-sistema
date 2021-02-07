@@ -67,7 +67,7 @@
                         <table class="table table-hover dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Título do Serviço</th>
+                                    <th class="text-center">Nome da Marca</th>
                                     <th class="text-center">Status</th>                   
                                     <th class="text-center no-sort">Ações</th>
                                 </tr>

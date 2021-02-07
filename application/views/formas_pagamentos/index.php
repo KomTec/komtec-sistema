@@ -31,6 +31,19 @@
                     </div>
                 <?php endif; ?>
 
+                <?php if ($message = $this->session->flashdata('error')): ?>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong><i class="fas fa-exclamation-triangle"></i>&nbsp; &nbsp;<?php echo $message; ?></strong>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                
                 <?php if ($message = $this->session->flashdata('info')): ?>
                     <div class="row">
                         <div class="col-md-12">
@@ -44,73 +57,37 @@
                     </div>
                 <?php endif; ?>
 
-                <?php if ($message = $this->session->flashdata('error')): ?>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-danger fade show" role="alert">
-                                <strong><i class="fas fa-exclamation-triangle"></i>&nbsp; &nbsp;<?php echo $message; ?></strong>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                <?php endif; ?>
-
             </div>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h2><a title="Cadastrar nova conta" href="<?php echo base_url('pagar/add'); ?>" class="btn btn-outline-success btn-sm float-lg-right"><i class="fas fa-plus"></i></i>&nbsp; Nova</a>
+                    <h2><a title="Cadastrar nova forma de pagamento" href="<?php echo base_url('pagamentos/add'); ?>" class="btn btn-outline-success btn-sm float-lg-right"><i class="fas fa-plus"></i></i>&nbsp; Novo</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Fornecedor</th>
-                                    <th>Valor</th>
-                                    <th>Vencimento</th>
-                                    <th class="text-center pr-4">Pagamento</th>                                                                                                   
-                                    <th class="text-center pr-4">Situação</th>                   
-                                    <th class="text-center pr-4">Observação</th>                   
+                                    <th class="text-center">Nome da Forma de Pagamento</th>
+                                    <th class="text-center">Aceita Parcelar</th>
+                                    <th class="text-center">Status</th>                   
                                     <th class="text-center no-sort">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($contas_pagar as $conta): ?>
+                                <?php foreach ($formas_pagamentos as $forma): ?>
                                     <tr>
-                                        <td><?php echo $conta->fornecedor ?></td>  
-                                        <td><?php echo 'R$&nbsp;' . $conta->conta_pagar_valor ?></td>
-                                        <td><?php echo formata_data_banco_sem_hora($conta->conta_pagar_data_vencimento); ?></td>           
+                                        <td class="text-center"><?php echo $forma->forma_pagamento_nome ?></td>
+                                        
+                                        <td class="text-center pr-4"><?php echo ($forma->forma_pagamento_aceita_parc == 1 ? '<span class="badge bg-info text-white btn-sm">Sim</span>' : '<span class="badge bg-secondary text-white btn-sm">Não</span>') ?></td>
+                                        <td class="text-center pr-4"><?php echo ($forma->forma_pagamento_ativa == 1 ? '<span class="badge bg-info text-white btn-sm">Ativo</span>' : '<span class="badge bg-secondary text-white btn-sm">Inativo</span>') ?></td>
 
-                                        <td class="text-center pr-4"><?php echo ($conta->conta_pagar_status == 1 ? formata_data_banco_com_hora($conta->conta_pagar_data_pagamento) : 'Em aberto') ?></td>
-
-                                        <td class="text-center pr-4">
-                                            <?php
-                                            if ($conta->conta_pagar_status == 1) {
-                                                echo '<span class="badge badge-success btn-sm">Pago</span>';
-                                            } elseif (strtotime($conta->conta_pagar_data_vencimento) > strtotime(date('Y-m-d'))) {
-                                                echo '<span class="badge bg-info btn-sm text-gray-900">A pagar</span>';
-                                            } elseif (strtotime($conta->conta_pagar_data_vencimento) == strtotime(date('Y-m-d'))) {
-                                                echo '<span class="badge badge-warning btn-sm text-gray-900">Vence hoje</span>';
-                                            } else {
-                                                echo '<span class="badge badge-danger btn-sm">Vencido</span>';
-                                            }
-                                            ?>                                             
-                                        </td>
-                                        <td><?php echo word_limiter($conta->conta_pagar_obs, 8) ?></td>
-
-                                        <td class="text-right pr-4">                                            
-                                            <a title="Editar" href="<?php echo base_url('pagar/edit/' . $conta->conta_pagar_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-edit"></i></a>
-
-                                            <!-- Só exibe o botão de excluir e editar para as contas que não estão pagas-->
-                                            <?php if ($conta->conta_pagar_status == 0) : ?>
-                                                <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#conta-<?php echo $conta->conta_pagar_id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
-                                            <?php endif; ?>
+                                        <td class="text-center">
+                                            <a title="Editar" href="<?php echo base_url('pagamentos/edit/' . $forma->forma_pagamento_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                                            <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#formas_pagamentos<?php echo $forma->forma_pagamento_id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
 
-                                <div class="modal fade" id="conta<?php echo $conta->conta_pagar_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="formas_pagamentos<?php echo $forma->forma_pagamento_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -122,11 +99,11 @@
                                             <div class="modal-body"><h5> Para excluír o registro clique em <strong>"Sim"</strong></h5></div>
                                             <div class="modal-footer">
                                                 <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Não</button>
-                                                <a class="btn btn-success btn-sm" href="<?php echo base_url('pagar/del/' . $conta->conta_pagar_id) ?>">Sim</a>
+                                                <a class="btn btn-success btn-sm" href="<?php echo base_url('formas_pagamentos/del/' . $forma->forma_pagamento_id) ?>">Sim</a>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> 
                             <?php endforeach; ?>
                             </tbody>
                         </table>

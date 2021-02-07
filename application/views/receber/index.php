@@ -99,9 +99,12 @@
                                         </td>
                                         <td><?php echo word_limiter($conta->conta_receber_obs, 6) ?></td>
 
-                                        <td class="text-center pro-8">
+                                        <td class="text-center pr-4">                                           
                                             <a title="Editar" href="<?php echo base_url('receber/edit/' . $conta->conta_receber_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-edit"></i></a>
-                                            <a title="Conta não pode excluir" href="javascript(void)" data-toggle="modal" data-target="#conta" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-trash-alt"></i></i></a>
+                                            <!-- Só exibe o botão de excluir e editar para as contas que não estão pagas-->
+                                            <?php if ($conta->conta_receber_status == 0) : ?>
+                                                <a title="Conta não pode excluir" href="javascript(void)" data-toggle="modal" data-target="#conta" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
 

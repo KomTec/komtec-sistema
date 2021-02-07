@@ -40,22 +40,22 @@
                                 </select>
                                 <?php echo form_error('conta_pagar_fornecedor_id', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
-
+                            
                             <div class="col-md-2 mb-2">
-                                <label>Data de Vencimento</label>
-                                <input type="date" class="form-control form-control-user-date" name="conta_pagar_data_vencimento" value="<?php echo $conta_pagar->conta_pagar_data_vencimento; ?>">
+                                <label>Data do Vencimento</label>
+                                <input type="date" class="form-control form-control-user-date" name="conta_pagar_data_vencimento" value="<?php echo $conta_pagar->conta_pagar_data_vencimento; ?>" <?php echo ($conta_pagar->conta_pagar_status == 1 ? 'readonly' : '') ?>>
                                 <?php echo form_error('conta_pagar_data_vencimento', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
-
+                            
                             <div class="col-md-2 mb-2">
-                                <label>Valor</label>
-                                <input type="text" class="form-control form-control-user-date money2" name="conta_pagar_valor" value="<?php echo $conta_pagar->conta_pagar_valor; ?>" >
+                                <label>Valor da conta</label>
+                                <input type="text" class="form-control form-control-user-date money2" name="conta_pagar_valor" value="<?php echo $conta_pagar->conta_pagar_valor; ?>" <?php echo ($conta_pagar->conta_pagar_status == 1 ? 'readonly' : '') ?>>
                                 <?php echo form_error('conta_pagar_valor', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
 
                             <div class="col-md-2 mb-2">
                                 <label>Status</label>
-                                <select class="custom-select" name="conta_pagar_status">
+                                <select class="custom-select" name="conta_pagar_status" >
                                     <option value="1" <?php echo ($conta_pagar->conta_pagar_status == 1 ? 'selected' : '') ?>>Pago</option>
                                     <option value="0" <?php echo ($conta_pagar->conta_pagar_status == 0 ? 'selected' : '') ?>>Pendente</option>
                                 </select>

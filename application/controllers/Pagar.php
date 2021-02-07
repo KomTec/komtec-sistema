@@ -73,7 +73,7 @@ class Pagar extends CI_Controller {
         } else {
             //Erro de validação
             $data = array(
-                'titulo' => 'Gestão de Contas a Pagar',
+                'titulo' => 'Nova Conta a Pagar',
                 'styles' => array(
                     'vendor/select2/select2.min.css',
                     'vendor/datatables/dataTables.bootstrap4.min.css'
@@ -134,7 +134,7 @@ class Pagar extends CI_Controller {
             } else {
                 //Erro de validação
                 $data = array(
-                    'titulo' => 'Gestão de Contas a Pagar',
+                    'titulo' => 'Editar Conta a Pagar',
                     'styles' => array(
                         'vendor/select2/select2.min.css',
                         'vendor/datatables/dataTables.bootstrap4.min.css'
