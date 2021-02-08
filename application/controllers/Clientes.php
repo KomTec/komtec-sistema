@@ -122,7 +122,7 @@ class Clientes extends CI_Controller {
                 'scripts' => array(
                     'vendor/mask/jquery.mask.min.js',
                     'vendor/mask/app.js',
-                    'js/clientes.js',
+                    'js/pf_pj.js',
                 ),
             );
 

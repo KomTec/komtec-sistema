@@ -30,7 +30,7 @@
     
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-            <i class="fas fa-hand-holding-usd"></i>
+            <i class="fas fa-shopping-cart"></i>
             <span>Vendas</span>
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
@@ -38,6 +38,7 @@
                 <h6 class="collapse-header">Escolha uma opção:</h6>
                 <a title="Gestão de Orçamentos" class="collapse-item" href="<?php echo base_url('orcamentos') ?>"><i class="fas fa-file-invoice-dollar text-gray-900"></i>&nbsp;&nbsp;Orçamentos</a>
                 <a title="Gestão de Vendas" class="collapse-item" href="<?php echo base_url('vendas') ?>"><i class="fas fa-funnel-dollar text-gray-900"></i>&nbsp;&nbsp;Vendas</a> 
+                <a title="Gestão de Ordens de Serviços" class="collapse-item" href="<?php echo base_url('os') ?>"><i class="fas fa-tools text-gray-900"></i>&nbsp;&nbsp;Ordens Serviços</a> 
             </div>
         </div>
     </li>
@@ -85,6 +86,7 @@
                 <h6 class="collapse-header">Escolha uma opção:</h6>
                 <a title="Gestão de Marcas" class="collapse-item" href="<?php echo base_url('marcas') ?>"><i class="fas fa-cubes text-gray-900"></i>&nbsp;&nbsp;Marcas</a>
                 <a title="Gestão de Categorias" class="collapse-item" href="<?php echo base_url('categorias') ?>"><i class="fab fa-buffer text-gray-900"></i>&nbsp;&nbsp;Categorias</a>
+                <a title="Gestão de Equipamentos" class="collapse-item" href="<?php echo base_url('equipamentos') ?>"><i class="fas fa-tractor text-gray-900"></i>&nbsp;&nbsp;Equipamentos</a>
                 <a title="Gestão de Produtos" class="collapse-item" href="<?php echo base_url('produtos') ?>"><i class="fab fa-product-hunt text-gray-900"></i>&nbsp;&nbsp;Produtos</a>
 
             </div>
