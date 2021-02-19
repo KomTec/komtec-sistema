@@ -26,6 +26,18 @@ $(document).ready(function () {
             return markup;
         }
     });
+    $('.marca').select2({
+        placeholder: "Marca",
+        allowClear: true,
+        "language": {
+            "noResults": function () {
+                return '<span class="text-danger">Marca não encontrada</span> <a href="' + BASE_URL + 'marcas/add" target="_blank" class="btn btn-primary btn-sm">Cadastrar</a>';
+            }
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }
+    });
 
     $('.vendedor').select2({
         placeholder: "Nome ou código",

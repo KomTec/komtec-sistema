@@ -62,7 +62,7 @@
                         <table class="table table-hover dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Título do Serviço</th>
+                                    <th>Título do Serviço</th>
                                     <th class="text-center">Valor</th>
                                     <th class="text-center">Descrição</th>
                                     <th class="text-center">Status</th>                   
@@ -72,9 +72,9 @@
                             <tbody>
                                 <?php foreach ($servicos as $servico): ?>
                                     <tr>
-                                        <td class="text-center"><?php echo $servico->servico_nome ?></td>
+                                        <td><?php echo $servico->servico_descricao ?></td>
                                         <td class="text-center pr-4"><?php echo 'R$&nbsp;' . $servico->servico_preco ?></td>
-                                        <td class="text-center"><?php echo word_limiter($servico->servico_descricao, 10); ?></td>        
+                                        <td class="text-center"><?php echo word_limiter($servico->servico_nome, 10); ?></td>        
                                         <td class="text-center pr-4"><?php echo ($servico->servico_ativo == 1 ? '<span class="badge bg-info text-white btn-sm">Ativo</span>' : '<span class="badge bg-secondary text-white btn-sm">Inativo</span>') ?></td>
 
                                         <td class="text-center">

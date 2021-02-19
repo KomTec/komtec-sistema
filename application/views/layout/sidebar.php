@@ -87,6 +87,7 @@
                 <a title="Gestão de Marcas" class="collapse-item" href="<?php echo base_url('marcas') ?>"><i class="fas fa-cubes text-gray-900"></i>&nbsp;&nbsp;Marcas</a>
                 <a title="Gestão de Categorias" class="collapse-item" href="<?php echo base_url('categorias') ?>"><i class="fab fa-buffer text-gray-900"></i>&nbsp;&nbsp;Categorias</a>
                 <a title="Gestão de Equipamentos" class="collapse-item" href="<?php echo base_url('equipamentos') ?>"><i class="fas fa-tractor text-gray-900"></i>&nbsp;&nbsp;Equipamentos</a>
+                <a title="Gestão de Carros" class="collapse-item" href="<?php echo base_url('carros') ?>"><i class="fas fa-car-side text-gray-900"></i>&nbsp;&nbsp;Carros</a>
                 <a title="Gestão de Produtos" class="collapse-item" href="<?php echo base_url('produtos') ?>"><i class="fab fa-product-hunt text-gray-900"></i>&nbsp;&nbsp;Produtos</a>
 
             </div>

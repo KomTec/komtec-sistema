@@ -70,14 +70,14 @@
             </div>
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h2><a title="Cadastrar nova marca" href="<?php echo base_url('marcas/add'); ?>" class="btn btn-outline-success btn-sm float-lg-right"><i class="fas fa-plus"></i></i>&nbsp; Novo</a>
+                    <h2><a title="Cadastrar nova marca" href="<?php echo base_url('marcas/add'); ?>" class="btn btn-outline-success btn-sm float-lg-right"><i class="fas fa-plus"></i>&nbsp; Novo</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th class="text-center">Título do Serviço</th>
+                                    <th class="text-center">Descrição</th>
                                     <th class="text-center">Status</th>                   
                                     <th class="text-center no-sort">Ações</th>
                                 </tr>

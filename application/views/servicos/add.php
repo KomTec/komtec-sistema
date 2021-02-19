@@ -31,8 +31,8 @@
 
                             <div class="col-md-4 mb-2">
                                 <label>Nome do Serviço</label>
-                                <input type="text" class="form-control form-control-user" name="servico_nome" placeholder="Nome do serviço" value="<?php echo set_value('servico_nome'); ?>">
-                                <?php echo form_error('servico_nome', '<small class="form-text text-danger">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user" name="servico_descricao" placeholder="Nome do serviço" value="<?php echo set_value('servico_descricao'); ?>">
+                                <?php echo form_error('servico_descricao', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                             <div class="col-md-4 mb-2">
                                 <label>Valor do Serviço</label>
@@ -51,8 +51,8 @@
                         <div class="form_goup row mb-3">
                             <div class="col-md-12 mb-2">
                                 <label>Descrição</label>
-                                <textarea type="text" class="form-control form-control-user" name="servico_descricao" placeholder="Descrição " style="min-height: 100px!important"><?php echo set_value('servico_descricao'); ?></textarea>
-                                <?php echo form_error('servico_descricao', '<small class="form-text text-danger">', '</small>'); ?>
+                                <textarea type="text" class="form-control form-control-user" name="servico_nome" placeholder="Descrição " style="min-height: 100px!important"><?php echo set_value('servico_nome'); ?></textarea>
+                                <?php echo form_error('servico_nome', '<small class="form-text text-danger">', '</small>'); ?>
                             </div>
                             
                         </div>
