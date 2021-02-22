@@ -91,9 +91,9 @@ class Ordem_servicos extends CI_Controller {
 
                 $data = html_escape($data);
                 
-                echo '<pre>';
-                print_r($data);
-                exit();
+//                echo '<pre>';
+//                print_r($data);
+//                exit();
 
                 $this->core_model->update('ordens_servicos', $data, array('ordem_servico_id' => $ordem_servico_id));
 
@@ -125,14 +125,14 @@ class Ordem_servicos extends CI_Controller {
 
                     $data = html_escape($data);
 
-                    $this->core_model->insert('ordens_servicos', $data, TRUE);
+                    //$this->core_model->insert('ordens_servicos', $data, TRUE);
 
                     $this->core_model->insert('ordem_tem_servicos', $data);
                 }
 
                 //Criar recurso PDF
 
-                redirect('os/imprimir/' . $ordem_servico_id);
+                redirect('os');
             } else {
 
                 $data = array(

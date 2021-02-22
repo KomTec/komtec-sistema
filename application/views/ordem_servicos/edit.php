@@ -40,12 +40,12 @@
                                 </select>
                                 <?php echo form_error('ordem_servico_tecnico_id', '<div class="text-danger small">', '</div>') ?>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <label class="small my-0">Escolha o Carro <span class="text-danger">*</span></label>
                                 <select id="id_carro" class="custom-select forma-pagamento" name="ordem_servico_carro_id">
                                     <option value="">Escolha</option>
                                     <?php foreach ($carros as $carro): ?>
-                                        <option value="<?php echo $carro->carro_id; ?>" <?php echo ($carro->tecnico_id == $ordem_servico->ordem_servico_carro_id ? 'selected' : '') ?> ><?php echo $carro->carro_placa; ?></option>
+                                        <option value="<?php echo $carro->carro_id; ?>" <?php echo ($carro->carro_id == $ordem_servico->ordem_servico_carro_id ? 'selected' : '') ?> ><?php echo $carro->carro_placa; ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <?php echo form_error('ordem_servico_carro_id', '<div class="text-danger small">', '</div>') ?>
