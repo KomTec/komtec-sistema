@@ -1,3 +1,5 @@
+
+
 <?php $this->load->view('layout/sidebar'); ?>
 
 <!-- Main Content -->
@@ -28,15 +30,25 @@
                         <legend class="font-small"><i class="fas fa-tools"></i>&nbsp;&nbsp;Dados da Ordem de Serviços</legend>
 
                         <div class="form-group row">
-                            <div class="ui-widget col-sm-3 mb-1 mb-1 sm-0">
-                                <label class="small my-0">Técnico <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_tecnico_nome', $ordem_servico->tecnico_nome); ?>" name="tecnico_nome" required="">
-                                <?php echo form_error('ordem_servico_tecnico_nome', '<div class="text-danger small">', '</div>') ?>
+                            <div class="col-md-4">
+                                <label class="small my-0">Escolha o Técnico <span class="text-danger">*</span></label>
+                                <select id="id_tecnico" class="custom-select forma-pagamento" name="ordem_servico_tecnico_id">
+                                    <option value="">Escolha</option>
+                                    <?php foreach ($tecnicos as $tecnico): ?>
+                                        <option value="<?php echo $tecnico->tecnico_id; ?>" <?php echo ($tecnico->tecnico_id == $ordem_servico->ordem_servico_tecnico_id ? 'selected' : '') ?> ><?php echo $tecnico->tecnico_nome_completo; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?php echo form_error('ordem_servico_tecnico_id', '<div class="text-danger small">', '</div>') ?>
                             </div>
-                            <div class="ui-widget col-sm-3 mb-1 mb-1 sm-0">
-                                <label class="small my-0">Carro <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_carro_placa', $ordem_servico->carro_placa); ?>" name="carro_placa" required="">
-                                <?php echo form_error('ordem_servico_carro_placa', '<div class="text-danger small">', '</div>') ?>
+                            <div class="col-md-4">
+                                <label class="small my-0">Escolha o Carro <span class="text-danger">*</span></label>
+                                <select id="id_carro" class="custom-select forma-pagamento" name="ordem_servico_carro_id">
+                                    <option value="">Escolha</option>
+                                    <?php foreach ($carros as $carro): ?>
+                                        <option value="<?php echo $carro->carro_id; ?>" <?php echo ($carro->tecnico_id == $ordem_servico->ordem_servico_carro_id ? 'selected' : '') ?> ><?php echo $carro->carro_placa; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?php echo form_error('ordem_servico_carro_id', '<div class="text-danger small">', '</div>') ?>
                             </div>
 
                             <div class="ui-widget col-lg-6 mb-1 mt-1">
@@ -155,6 +167,11 @@
                                     </select>
                                     <?php echo form_error('ordem_servico_equipamento_id', '<div class="text-danger small">', '</div>') ?>
                                 </div>
+                                <div class="col-sm-4 mb-1 mb-sm-0">
+                                    <label class="small my-0">Série<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_equipamento_serie', $ordem_servico->ordem_servico_equipamento_serie); ?>" name="ordem_servico_equipamento_serie">
+                                    <?php echo form_error('ordem_servico_equipamento_serie', '<div class="text-danger small">', '</div>') ?>
+                                </div>
                                 <div class="col-md-4">
                                     <label class="small my-0">Escolha a Marca <span class="text-danger">*</span></label>
                                     <select id="id_marca " class="custom-select forma-pagamento" name="ordem_servico_marca_id">
@@ -165,23 +182,35 @@
                                     </select>
                                     <?php echo form_error('ordem_servico_marca_id', '<div class="text-danger small">', '</div>') ?>
                                 </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4 mb-1 mb-sm-0">
+                                    <label class="small my-0">Série do Motor <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_equipamento_serie_motor', $ordem_servico->ordem_servico_equipamento_serie_motor); ?>" name="ordem_servico_equipamento_serie_motor">
+                                    <?php echo form_error('ordem_servico_equipamento_serie_motor', '<div class="text-danger small">', '</div>') ?>
+                                </div>
+                                <div class="col-sm-4 mb-1 mb-sm-0">
+                                    <label class="small my-0">Hodrometro <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_equipamento_hodometro', $ordem_servico->ordem_servico_equipamento_hodometro); ?>" name="ordem_servico_equipamento_hodometro" >
+                                    <?php echo form_error('ordem_servico_equipamento_hodometro', '<div class="text-danger small">', '</div>') ?>
+                                </div>
                                 <div class="col-sm-4 mb-1 mb-sm-0">
                                     <label class="small my-0">Modelo <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_modelo_equipamento', $ordem_servico->ordem_servico_modelo_equipamento); ?>" name="modelo_equipamento">
-                                    <?php echo form_error('ordem_servico_modelo_equipamento', '<div class="text-danger small">', '</div>') ?>
+                                    <input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_equipamento_modelo', $ordem_servico->ordem_servico_equipamento_modelo); ?>" name="ordem_servico_equipamento_modelo">
+                                    <?php echo form_error('ordem_servico_equipamento_modelo', '<div class="text-danger small">', '</div>') ?>
                                 </div>
                             </div>                            
                             <div class="form-group row">
 
                                 <div class="col-sm-6 mb-1 mb-sm-0">
                                     <label class="small my-0">Defeitos <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_defeito', $ordem_servico->ordem_servico_defeito); ?>" name="ordem_servico_defeito" required="">
-                                    <?php echo form_error('ordem_servico_defeito', '<div class="text-danger small">', '</div>') ?>
+                                    <input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_equipamento_defeito', $ordem_servico->ordem_servico_equipamento_defeito); ?>" name="ordem_servico_equipamento_defeito" required="">
+                                    <?php echo form_error('ordem_servico_equipamento_defeito', '<div class="text-danger small">', '</div>') ?>
                                 </div>
                                 <div class="col-sm-6 mb-1 mb-sm-0">
                                     <label class="small my-0">Peças <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_pecas', $ordem_servico->ordem_servico_pecas); ?>" name="ordem_servico_pecas" required="">
-                                    <?php echo form_error('ordem_servico_pecas', '<div class="text-danger small">', '</div>') ?>
+                                    <input type="text" class="form-control form-control-user" value="<?php echo set_value('ordem_servico_equipamento_pecas', $ordem_servico->ordem_servico_equipamento_pecas); ?>" name="ordem_servico_equipamento_pecas" required="">
+                                    <?php echo form_error('ordem_servico_equipamento_pecas', '<div class="text-danger small">', '</div>') ?>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -203,7 +232,7 @@
 
                     <div class="mt-3">
                         <button tabindex="Atualizar" type="submit" class="btn btn-outline-success btn-sm" id="btn-cadastrar-venda" form="form">Atualizar</button>
-<!--                        <button title="Salvar" type="submit" class="btn btn-outline-success btn-sm">Salvar</button>-->
+                        <!--                        <button title="Salvar" type="submit" class="btn btn-outline-success btn-sm">Salvar</button>-->
                         <a href="<?php echo base_url('os'); ?>" class="btn btn-secondary btn-sm">Voltar</a>
                     </div>
                 </form> 

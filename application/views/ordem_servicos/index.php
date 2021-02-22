@@ -88,6 +88,7 @@
                                         <td class="text-center pr-4"><?php echo ($os->ordem_servico_status == 1 ? '<span class="badge bg-info text-white btn-sm">Pago</span>' : '<span class="badge bg-secondary text-white btn-sm">Em Aberto</span>') ?></td>
 
                                         <td class="text-center">
+                                            <a title="Imprimir" href="<?php echo base_url('os/pdf/' . $os->ordem_servico_id) ?>" class="btn btn-sm btn btn-outline-dark"><i class="fas fa-print"></i></a>
                                             <a title="Editar" href="<?php echo base_url('os/edit/' . $os->ordem_servico_id) ?>" class="btn btn-sm btn btn-outline-warning"><i class="fas fa-edit"></i></a>
                                             <a title="Excluir" href="javascript(void)" data-toggle="modal" data-target="#os<?php echo $os->ordem_servico_id; ?>" class="btn btn-sm btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
                                         </td>

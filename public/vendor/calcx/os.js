@@ -111,7 +111,7 @@ $(document).ready(function () {
                     Swal.fire({
                         icon: 'info',
                         width: 300,
-                        title: 'Opss!',
+                        title: 'Opa!',
                         html: 'Esse serviço já foi adicionado',
                     })
                 } else {

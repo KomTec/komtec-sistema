@@ -24,15 +24,16 @@ CREATE TABLE IF NOT EXISTS `carros` (
   PRIMARY KEY (`carro_id`),
   KEY `fk_carro_marca_id` (`carro_marca_id`),
   CONSTRAINT `fk_carro_marca_id` FOREIGN KEY (`carro_marca_id`) REFERENCES `marcas` (`marca_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela komtec-sistema.carros: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.carros: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `carros` DISABLE KEYS */;
 INSERT INTO `carros` (`carro_id`, `carro_nome`, `carro_modelo`, `carro_marca_id`, `carro_placa`, `carro_descricao`, `carro_ativo`, `carro_data_alteracao`) VALUES
 	(1, 'Caminhonete', 'S10', 12, 'ABC-1234', NULL, 1, '2021-02-14 00:46:44'),
-	(2, 'Caminhonete', 'Strada', 14, 'ABC-2345', NULL, 1, '2021-02-14 00:47:36'),
+	(2, 'Caminhonete', 'Strada', 14, 'ABC-2345', NULL, 0, '2021-02-20 16:30:44'),
 	(3, 'Caminhonete', 'Saveiro', 13, 'ABC-3456', NULL, 1, '2021-02-14 00:48:12'),
-	(4, 'Caminhonete', 'Hyullux', 15, 'ABC-4567', NULL, 1, '2021-02-14 00:50:14');
+	(4, 'Caminhonete', 'Hyullux', 15, 'ABC-4567', NULL, 1, '2021-02-14 00:50:14'),
+	(5, 'Passeio', 'HB20S', 4, 'QTS-8907', NULL, 1, '2021-02-22 09:08:27');
 /*!40000 ALTER TABLE `carros` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela komtec-sistema.categorias
@@ -141,29 +142,29 @@ INSERT INTO `contas_receber` (`conta_receber_id`, `conta_receber_cliente_id`, `c
 -- Copiando estrutura para tabela komtec-sistema.equipamentos
 CREATE TABLE IF NOT EXISTS `equipamentos` (
   `equipamento_id` int(11) NOT NULL AUTO_INCREMENT,
+  `equipamento_marca_id` int(11) NOT NULL,
   `equipamento_codigo` varchar(45) DEFAULT NULL,
   `equipamento_data_cadastro` datetime DEFAULT NULL,
-  `equipamento_marca_id` int(11) NOT NULL,
+  `equipamento_hodometro` varchar(20) DEFAULT NULL,
+  `equipamento_serie_motor` varchar(25) DEFAULT NULL,
   `equipamento_nome` varchar(145) DEFAULT NULL,
   `equipamento_modelo` varchar(45) DEFAULT NULL,
+  `equipamento_serie` varchar(145) DEFAULT NULL,
   `equipamento_ativo` tinyint(1) DEFAULT NULL,
   `equipamento_obs` tinytext,
-  `equipamento_data_alteracao` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `equipamento_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`equipamento_id`),
   KEY `fk_equipamento_marca_id` (`equipamento_marca_id`),
   CONSTRAINT `fk_equipamento_marca_id` FOREIGN KEY (`equipamento_marca_id`) REFERENCES `marcas` (`marca_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela komtec-sistema.equipamentos: ~7 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.equipamentos: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `equipamentos` DISABLE KEYS */;
-INSERT INTO `equipamentos` (`equipamento_id`, `equipamento_codigo`, `equipamento_data_cadastro`, `equipamento_marca_id`, `equipamento_nome`, `equipamento_modelo`, `equipamento_ativo`, `equipamento_obs`, `equipamento_data_alteracao`) VALUES
-	(1, '72495380', '2021-02-07 23:47:46', 2, 'Escavadeira Hidraulica', 'PC200-8', 1, '', '2021-02-08 00:06:06'),
-	(2, '53721489', '2021-02-08 00:30:19', 2, 'Carregadeiras de Rodas', 'WA200-5', 1, '', '2021-02-08 00:30:20'),
-	(3, '64819735', '2021-02-08 00:30:21', 2, 'Trator de Esteiras', 'D61EX-15E0', 1, '', '2021-02-08 00:30:22'),
-	(4, '84739105', '2021-02-08 11:52:53', 2, 'Motoniveladora', 'GD655-5', 1, '', '2021-02-08 11:52:53'),
-	(5, '30469571', '2021-02-08 11:52:55', 2, 'Carregadeira de Rodas', 'WA200-6', 1, '', '2021-02-08 11:52:55'),
-	(6, '98435062', '2021-02-08 11:52:58', 10, 'Motoniveladora', 'E215LC', 1, '', '2021-02-08 11:52:59'),
-	(7, '07942681', '2021-02-08 11:53:00', 3, 'Escavadeira Hidráulica', '320D', 1, '', '2021-02-08 11:53:01');
+INSERT INTO `equipamentos` (`equipamento_id`, `equipamento_marca_id`, `equipamento_codigo`, `equipamento_data_cadastro`, `equipamento_hodometro`, `equipamento_serie_motor`, `equipamento_nome`, `equipamento_modelo`, `equipamento_serie`, `equipamento_ativo`, `equipamento_obs`, `equipamento_data_alteracao`) VALUES
+	(1, 2, '09842572', '2021-02-21 18:59:15', '4034', '12345678', 'Escavadeira Hidráulica', 'PC200-8', 'B10234', 1, NULL, '2021-02-21 19:00:27'),
+	(2, 2, '47162085', NULL, NULL, NULL, 'Carregadeiras de Rodas', 'WA200-5', NULL, 1, '', '2021-02-21 19:01:12'),
+	(3, 2, '37084569', NULL, NULL, NULL, 'Trator de Esteiras', 'D61EX-15E0', NULL, 1, '', '2021-02-21 19:01:31'),
+	(4, 2, '52918430', NULL, NULL, NULL, 'Motoniveladora', 'GD655-5', NULL, 1, '', '2021-02-21 19:01:58');
 /*!40000 ALTER TABLE `equipamentos` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela komtec-sistema.formas_pagamentos
@@ -271,7 +272,7 @@ INSERT INTO `marcas` (`marca_id`, `marca_nome`, `marca_ativa`, `marca_data_alter
 	(7, 'XCMG', 1, '2021-01-28 16:33:29'),
 	(8, 'YTO', 1, '2021-02-08 11:48:21'),
 	(9, 'JCB', 1, '2021-02-08 11:48:30'),
-	(10, 'New Holland', 1, '2021-02-08 11:48:38'),
+	(10, 'New Holland', 0, '2021-02-20 17:29:10'),
 	(11, 'Gates', 1, '0000-00-00 00:00:00'),
 	(12, 'Chevrolet', 1, '2021-02-13 23:39:49'),
 	(13, 'Volkswagem', 1, '2021-02-13 23:39:58'),
@@ -293,33 +294,33 @@ CREATE TABLE IF NOT EXISTS `ordem_tem_servicos` (
   KEY `fk_ordem_ts_id_ordem_servico` (`ordem_ts_id_ordem_servico`),
   CONSTRAINT `fk_ordem_ts_id_ordem_servico` FOREIGN KEY (`ordem_ts_id_ordem_servico`) REFERENCES `ordens_servicos` (`ordem_servico_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_ordem_ts_id_servico` FOREIGN KEY (`ordem_ts_id_servico`) REFERENCES `servicos` (`servico_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COMMENT='Tabela de relacionamento entre as tabelas servicos e ordem_servico';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COMMENT='Tabela de relacionamento entre as tabelas servicos e ordem_servico';
 
 -- Copiando dados para a tabela komtec-sistema.ordem_tem_servicos: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `ordem_tem_servicos` DISABLE KEYS */;
 INSERT INTO `ordem_tem_servicos` (`ordem_ts_id`, `ordem_ts_id_servico`, `ordem_ts_id_ordem_servico`, `ordem_ts_quantidade`, `ordem_ts_valor_unitario`, `ordem_ts_valor_desconto`, `ordem_ts_valor_total`) VALUES
-	(4, 1, 11, 3, '130.00', NULL, '390.00');
+	(6, 1, 1, 10, '130.00', NULL, '1300.00');
 /*!40000 ALTER TABLE `ordem_tem_servicos` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela komtec-sistema.ordens_servicos
 CREATE TABLE IF NOT EXISTS `ordens_servicos` (
   `ordem_servico_id` int(11) NOT NULL AUTO_INCREMENT,
-  `ordem_servico_tecnico_id` int(11) DEFAULT NULL,
-  `ordem_servico_carro_id` int(11) DEFAULT NULL,
-  `ordem_servico_marca_id` int(11) DEFAULT NULL,
   `ordem_servico_forma_pagamento_id` int(11) DEFAULT NULL,
   `ordem_servico_cliente_id` int(11) DEFAULT NULL,
   `ordem_servico_equipamento_id` int(11) DEFAULT NULL,
+  `ordem_servico_tecnico_id` int(11) DEFAULT NULL,
+  `ordem_servico_marca_id` int(11) DEFAULT NULL,
+  `ordem_servico_carro_id` int(11) DEFAULT NULL,
   `ordem_servico_data_emissao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ordem_servico_data_inicio` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ordem_servico_data_fechamento` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ordem_servico_data_conclusao` varchar(100) DEFAULT NULL,
-  `ordem_servico_serie_equipamento` varchar(45) DEFAULT NULL,
-  `ordem_servico_serie_motor` varchar(25) DEFAULT NULL,
-  `ordem_servico_hodometro_equipamento` varchar(20) DEFAULT NULL,
-  `ordem_servico_modelo_equipamento` varchar(80) DEFAULT NULL,
-  `ordem_servico_pecas` tinytext,
-  `ordem_servico_defeito` tinytext,
+  `ordem_servico_equipamento_serie` varchar(45) DEFAULT NULL,
+  `ordem_servico_equipamento_serie_motor` varchar(25) DEFAULT NULL,
+  `ordem_servico_equipamento_hodometro` varchar(20) DEFAULT NULL,
+  `ordem_servico_equipamento_modelo` varchar(80) DEFAULT NULL,
+  `ordem_servico_equipamento_pecas` tinytext,
+  `ordem_servico_equipamento_defeito` tinytext,
   `ordem_servico_servico_executado` tinytext,
   `ordem_servico_valor_desconto` varchar(25) DEFAULT NULL,
   `ordem_servico_valor_total` varchar(25) DEFAULT NULL,
@@ -327,24 +328,24 @@ CREATE TABLE IF NOT EXISTS `ordens_servicos` (
   `ordem_servico_obs` tinytext,
   `ordem_servico_data_alteracao` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ordem_servico_id`),
-  KEY `fk_ordem_servico_id_tecnico` (`ordem_servico_tecnico_id`),
-  KEY `fk_ordem_servico_id_carro` (`ordem_servico_carro_id`),
-  KEY `fk_ordem_servico_id_marca` (`ordem_servico_marca_id`),
   KEY `fk_ordem_servico_id_cliente` (`ordem_servico_cliente_id`),
   KEY `fk_ordem_servico_id_forma_pagto` (`ordem_servico_forma_pagamento_id`),
   KEY `fk_ordem_servico_id_equipamento` (`ordem_servico_equipamento_id`),
+  KEY `fk_ordem_servico_id_tecnico` (`ordem_servico_tecnico_id`),
+  KEY `fk_ordem_servico_id_marca` (`ordem_servico_marca_id`),
+  KEY `fk_ordem_servico_id_carro` (`ordem_servico_carro_id`),
   CONSTRAINT `fk_ordem_servico_id_carro` FOREIGN KEY (`ordem_servico_carro_id`) REFERENCES `carros` (`carro_id`),
   CONSTRAINT `fk_ordem_servico_id_cliente` FOREIGN KEY (`ordem_servico_cliente_id`) REFERENCES `clientes` (`cliente_id`),
   CONSTRAINT `fk_ordem_servico_id_equipamento` FOREIGN KEY (`ordem_servico_equipamento_id`) REFERENCES `equipamentos` (`equipamento_id`),
   CONSTRAINT `fk_ordem_servico_id_forma_pagto` FOREIGN KEY (`ordem_servico_forma_pagamento_id`) REFERENCES `formas_pagamentos` (`forma_pagamento_id`),
   CONSTRAINT `fk_ordem_servico_id_marca` FOREIGN KEY (`ordem_servico_marca_id`) REFERENCES `marcas` (`marca_id`),
   CONSTRAINT `fk_ordem_servico_id_tecnico` FOREIGN KEY (`ordem_servico_tecnico_id`) REFERENCES `tecnicos` (`tecnico_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Copiando dados para a tabela komtec-sistema.ordens_servicos: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `ordens_servicos` DISABLE KEYS */;
-INSERT INTO `ordens_servicos` (`ordem_servico_id`, `ordem_servico_tecnico_id`, `ordem_servico_carro_id`, `ordem_servico_marca_id`, `ordem_servico_forma_pagamento_id`, `ordem_servico_cliente_id`, `ordem_servico_equipamento_id`, `ordem_servico_data_emissao`, `ordem_servico_data_inicio`, `ordem_servico_data_fechamento`, `ordem_servico_data_conclusao`, `ordem_servico_serie_equipamento`, `ordem_servico_serie_motor`, `ordem_servico_hodometro_equipamento`, `ordem_servico_modelo_equipamento`, `ordem_servico_pecas`, `ordem_servico_defeito`, `ordem_servico_servico_executado`, `ordem_servico_valor_desconto`, `ordem_servico_valor_total`, `ordem_servico_status`, `ordem_servico_obs`, `ordem_servico_data_alteracao`) VALUES
-	(11, 1, 1, 2, 3, 3, 1, '2021-02-14 19:39:52', '2021-02-14 19:39:55', '2021-02-14 19:39:57', '14/02/2021', 'B10123', '12345678', '5045', 'PC200-8', 'Kit Revisão 4000 horas', 'Revisão de 4000 horas vencida', 'Foi executado a revisão de 4000 horas conforme manual de operação e manutenção', '', '390.00', 0, NULL, '2021-02-19 17:25:55');
+INSERT INTO `ordens_servicos` (`ordem_servico_id`, `ordem_servico_forma_pagamento_id`, `ordem_servico_cliente_id`, `ordem_servico_equipamento_id`, `ordem_servico_tecnico_id`, `ordem_servico_marca_id`, `ordem_servico_carro_id`, `ordem_servico_data_emissao`, `ordem_servico_data_inicio`, `ordem_servico_data_fechamento`, `ordem_servico_data_conclusao`, `ordem_servico_equipamento_serie`, `ordem_servico_equipamento_serie_motor`, `ordem_servico_equipamento_hodometro`, `ordem_servico_equipamento_modelo`, `ordem_servico_equipamento_pecas`, `ordem_servico_equipamento_defeito`, `ordem_servico_servico_executado`, `ordem_servico_valor_desconto`, `ordem_servico_valor_total`, `ordem_servico_status`, `ordem_servico_obs`, `ordem_servico_data_alteracao`) VALUES
+	(1, 3, 2, 1, 1, 2, 1, '2021-02-21 21:07:12', '2021-02-21 21:07:12', '2021-02-21 21:07:12', '21/02/2021', 'B10123', '123456', '4034', 'PC200-8', 'Kit Revisão de 4000 horas', 'Revisão de 4000 horas vencida', 'Executado a revisão de 4000 horas conforme manual de operação e manutenção', 'R$ 0.00', '1300.00', 0, 'Testando edição da ordem de serviço', '2021-02-21 23:43:24');
 /*!40000 ALTER TABLE `ordens_servicos` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela komtec-sistema.produtos
@@ -416,15 +417,18 @@ CREATE TABLE IF NOT EXISTS `sistema` (
   `sistema_cep` varchar(25) DEFAULT NULL,
   `sistema_endereco` varchar(145) DEFAULT NULL,
   `sistema_numero` varchar(25) DEFAULT NULL,
+  `sistema_bairro` varchar(45) DEFAULT NULL,
   `sistema_cidade` varchar(45) DEFAULT NULL,
   `sistema_estado` varchar(2) DEFAULT NULL,
   `sistema_txt_ordem_servico` tinytext,
   `sistema_data_alteracao` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`sistema_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela komtec-sistema.sistema: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.sistema: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `sistema` DISABLE KEYS */;
+INSERT INTO `sistema` (`sistema_id`, `sistema_razao_social`, `sistema_nome_fantasia`, `sistema_cnpj`, `sistema_ie`, `sistema_telefone_fixo`, `sistema_telefone_movel`, `sistema_email`, `sistema_site_url`, `sistema_cep`, `sistema_endereco`, `sistema_numero`, `sistema_bairro`, `sistema_cidade`, `sistema_estado`, `sistema_txt_ordem_servico`, `sistema_data_alteracao`) VALUES
+	(1, 'Komtec Peças e Serviços', 'Komtec Peças e Serviços', '13.874.213/0001-94', '10.964.084-5', '(62) 3456-78900', '(62) 99933-4455', 'komtec.komatsu@gmail.com', 'http://localhost/komtec-sistem', '74075-060', 'Rua 4 A', '12345', 'Setor Aeroporto', 'Goiânia', 'GO', 'Seu equipamento em boas mãos', '2021-02-20 22:42:31');
 /*!40000 ALTER TABLE `sistema` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela komtec-sistema.tecnicos
@@ -432,9 +436,9 @@ CREATE TABLE IF NOT EXISTS `tecnicos` (
   `tecnico_id` int(11) NOT NULL AUTO_INCREMENT,
   `tecnico_codigo` varchar(10) NOT NULL,
   `tecnico_data_cadastro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `tecnico_nome_completo` varchar(145) NOT NULL,
-  `tecnico_cpf` varchar(25) NOT NULL,
-  `tecnico_rg` varchar(25) NOT NULL,
+  `tecnico_nome_completo` varchar(145) DEFAULT NULL,
+  `tecnico_cpf` varchar(25) DEFAULT NULL,
+  `tecnico_rg` varchar(25) DEFAULT NULL,
   `tecnico_telefone` varchar(15) DEFAULT NULL,
   `tecnico_celular` varchar(15) DEFAULT NULL,
   `tecnico_email` varchar(45) DEFAULT NULL,
@@ -491,7 +495,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Copiando dados para a tabela komtec-sistema.users: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `cell_phone`) VALUES
-	(1, '127.0.0.1', 'administrator', '$2y$12$URk6yGldU9FdWW3Q7FyipOn1R7TU8CeTgw1VJexqvCEn3.MPXHvV6', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1613738213, 1, 'Admin', 'istrator', 'ADMIN', '0', NULL),
+	(1, '127.0.0.1', 'administrator', '$2y$12$URk6yGldU9FdWW3Q7FyipOn1R7TU8CeTgw1VJexqvCEn3.MPXHvV6', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1613994906, 1, 'Admin', 'istrator', 'ADMIN', '0', NULL),
 	(2, '::1', 'admin', '$2y$10$WLu02bqWFGC31TtappiZme82ki3/dshNmdrgVbE94EW4GPK8LeIvW', 'komtec.komatsu@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1611832895, NULL, 0, 'Roberson', 'Santos', 'KomTec', '', '');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
