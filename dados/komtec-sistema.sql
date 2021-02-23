@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `carros` (
   CONSTRAINT `fk_carro_marca_id` FOREIGN KEY (`carro_marca_id`) REFERENCES `marcas` (`marca_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela komtec-sistema.carros: ~5 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.carros: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `carros` DISABLE KEYS */;
 INSERT INTO `carros` (`carro_id`, `carro_nome`, `carro_modelo`, `carro_marca_id`, `carro_placa`, `carro_descricao`, `carro_ativo`, `carro_data_alteracao`) VALUES
 	(1, 'Caminhonete', 'S10', 12, 'ABC-1234', NULL, 1, '2021-02-14 00:46:44'),
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `contas_pagar` (
   CONSTRAINT `fk_conta_pagar_id_fornecedor` FOREIGN KEY (`conta_pagar_fornecedor_id`) REFERENCES `fornecedores` (`fornecedor_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='		';
 
--- Copiando dados para a tabela komtec-sistema.contas_pagar: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.contas_pagar: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `contas_pagar` DISABLE KEYS */;
 INSERT INTO `contas_pagar` (`conta_pagar_id`, `conta_pagar_fornecedor_id`, `conta_pagar_data_vencimento`, `conta_pagar_data_pagamento`, `conta_pagar_valor`, `conta_pagar_status`, `conta_pagar_obs`, `conta_pagar_data_alteracao`) VALUES
 	(1, 1, '2021-02-08', '2021-02-06 12:52:53', '950.00', 1, 'Cliente solicitou alterar a data do pagamento para segunda-feira 08/02/2021', '2021-02-06 09:52:53'),
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `contas_receber` (
   CONSTRAINT `fk_conta_receber_id_cliente` FOREIGN KEY (`conta_receber_cliente_id`) REFERENCES `clientes` (`cliente_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela komtec-sistema.contas_receber: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.contas_receber: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `contas_receber` DISABLE KEYS */;
 INSERT INTO `contas_receber` (`conta_receber_id`, `conta_receber_cliente_id`, `conta_receber_data_vencimento`, `conta_receber_data_pagamento`, `conta_receber_valor`, `conta_receber_status`, `conta_receber_obs`, `conta_receber_data_alteracao`) VALUES
 	(1, 1, '2021-03-01', '2020-02-28 17:48:21', '150.226,22', 0, 'Cliente pediu para alterar vencimento para 01/03/2021', '2021-02-06 15:39:37'),
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `fornecedores` (
   PRIMARY KEY (`fornecedor_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela komtec-sistema.fornecedores: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.fornecedores: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `fornecedores` DISABLE KEYS */;
 INSERT INTO `fornecedores` (`fornecedor_id`, `fornecedor_data_cadastro`, `fornecedor_razao`, `fornecedor_nome_fantasia`, `fornecedor_cnpj`, `fornecedor_ie`, `fornecedor_telefone`, `fornecedor_celular`, `fornecedor_email`, `fornecedor_contato`, `fornecedor_cep`, `fornecedor_endereco`, `fornecedor_numero_endereco`, `fornecedor_bairro`, `fornecedor_complemento`, `fornecedor_cidade`, `fornecedor_estado`, `fornecedor_ativo`, `fornecedor_obs`, `fornecedor_data_alteracao`) VALUES
 	(1, '2021-01-28 11:05:11', 'Roberson Dias dos Santos', 'KomTec Peças e Serviços', '37.112.322/0001-32', '10.944.755-7', '(62) 3577-2346', '(62) 99325-6370', 'komtec.komatsu@gmail.com', 'Roberson', '74491-607', 'JC305', '7A', 'Jardim do Fornecedor', 'Quadra do Fornecedor', 'Goiânia', 'GO', 1, 'Novo Fornecedor', '2021-02-01 08:13:15'),
@@ -261,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `marcas` (
   PRIMARY KEY (`marca_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela komtec-sistema.marcas: ~14 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.marcas: ~13 rows (aproximadamente)
 /*!40000 ALTER TABLE `marcas` DISABLE KEYS */;
 INSERT INTO `marcas` (`marca_id`, `marca_nome`, `marca_ativa`, `marca_data_alteracao`) VALUES
 	(2, 'Komatsu', 1, '2021-01-28 10:46:06'),
@@ -294,12 +294,14 @@ CREATE TABLE IF NOT EXISTS `ordem_tem_servicos` (
   KEY `fk_ordem_ts_id_ordem_servico` (`ordem_ts_id_ordem_servico`),
   CONSTRAINT `fk_ordem_ts_id_ordem_servico` FOREIGN KEY (`ordem_ts_id_ordem_servico`) REFERENCES `ordens_servicos` (`ordem_servico_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_ordem_ts_id_servico` FOREIGN KEY (`ordem_ts_id_servico`) REFERENCES `servicos` (`servico_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COMMENT='Tabela de relacionamento entre as tabelas servicos e ordem_servico';
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1 COMMENT='Tabela de relacionamento entre as tabelas servicos e ordem_servico';
 
--- Copiando dados para a tabela komtec-sistema.ordem_tem_servicos: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.ordem_tem_servicos: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `ordem_tem_servicos` DISABLE KEYS */;
 INSERT INTO `ordem_tem_servicos` (`ordem_ts_id`, `ordem_ts_id_servico`, `ordem_ts_id_ordem_servico`, `ordem_ts_quantidade`, `ordem_ts_valor_unitario`, `ordem_ts_valor_desconto`, `ordem_ts_valor_total`) VALUES
-	(6, 1, 1, 10, '130.00', NULL, '1300.00');
+	(57, 1, 1, 100, ' 150.00', '0 ', ' 15,000.00'),
+	(58, 3, 1, 20, ' 65.00', '0 ', ' 1,300.00'),
+	(59, 2, 1, 2000, ' 2.30', '0 ', ' 4,600.00');
 /*!40000 ALTER TABLE `ordem_tem_servicos` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela komtec-sistema.ordens_servicos
@@ -345,7 +347,7 @@ CREATE TABLE IF NOT EXISTS `ordens_servicos` (
 -- Copiando dados para a tabela komtec-sistema.ordens_servicos: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `ordens_servicos` DISABLE KEYS */;
 INSERT INTO `ordens_servicos` (`ordem_servico_id`, `ordem_servico_forma_pagamento_id`, `ordem_servico_cliente_id`, `ordem_servico_equipamento_id`, `ordem_servico_tecnico_id`, `ordem_servico_marca_id`, `ordem_servico_carro_id`, `ordem_servico_data_emissao`, `ordem_servico_data_inicio`, `ordem_servico_data_fechamento`, `ordem_servico_data_conclusao`, `ordem_servico_equipamento_serie`, `ordem_servico_equipamento_serie_motor`, `ordem_servico_equipamento_hodometro`, `ordem_servico_equipamento_modelo`, `ordem_servico_equipamento_pecas`, `ordem_servico_equipamento_defeito`, `ordem_servico_servico_executado`, `ordem_servico_valor_desconto`, `ordem_servico_valor_total`, `ordem_servico_status`, `ordem_servico_obs`, `ordem_servico_data_alteracao`) VALUES
-	(1, 3, 2, 1, 1, 2, 1, '2021-02-21 21:07:12', '2021-02-21 21:07:12', '2021-02-21 21:07:12', '21/02/2021', 'B10123', '123456', '4034', 'PC200-8', 'Kit Revisão de 4000 horas', 'Revisão de 4000 horas vencida', 'Executado a revisão de 4000 horas conforme manual de operação e manutenção', 'R$ 0.00', '1300.00', 0, 'Testando edição da ordem de serviço', '2021-02-21 23:43:24');
+	(1, 6, 2, 1, 1, 2, 1, '2021-02-21 21:07:12', '2021-02-21 21:07:12', '2021-02-21 21:07:12', '21/02/2021', 'B10123', '123456', '4034', 'PC200-8', 'Kit Revisão de 4000 horas', 'Revisão de 4000 horas vencida', 'Executado a revisão de 4000 horas conforme manual de operação e manutenção', 'R$ 0.00', '20,900.00', 0, 'Testando novamente.', '2021-02-23 10:53:00');
 /*!40000 ALTER TABLE `ordens_servicos` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela komtec-sistema.produtos
@@ -375,7 +377,7 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   KEY `fk_produto_forncedor_id` (`produto_fornecedor_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela komtec-sistema.produtos: ~4 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.produtos: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
 INSERT INTO `produtos` (`produto_id`, `produto_nome`, `produto_codigo`, `produto_codigo_original`, `produto_data_cadastro`, `produto_categoria_id`, `produto_marca_id`, `produto_fornecedor_id`, `produto_descricao`, `produto_unidade`, `produto_codigo_barras`, `produto_ncm`, `produto_preco_custo`, `produto_preco_venda`, `produto_estoque_minimo`, `produto_qtde_estoque`, `produto_ativo`, `produto_obs`, `produto_data_alteracao`) VALUES
 	(1, 'Junta', '72495380', '20Y1513442', '2021-01-30 08:14:19', 1, 2, 1, 'Junta do balancin', 'UN', '4545', '48232099', '58,33', '170,00', '2', '2', 1, 'Produto auditado e liberado.', '2021-02-02 15:23:22'),
@@ -492,10 +494,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `uc_remember_selector` (`remember_selector`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela komtec-sistema.users: ~2 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.users: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `cell_phone`) VALUES
-	(1, '127.0.0.1', 'administrator', '$2y$12$URk6yGldU9FdWW3Q7FyipOn1R7TU8CeTgw1VJexqvCEn3.MPXHvV6', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1613994906, 1, 'Admin', 'istrator', 'ADMIN', '0', NULL),
+	(1, '127.0.0.1', 'administrator', '$2y$12$URk6yGldU9FdWW3Q7FyipOn1R7TU8CeTgw1VJexqvCEn3.MPXHvV6', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1614107097, 1, 'Admin', 'istrator', 'ADMIN', '0', NULL),
 	(2, '::1', 'admin', '$2y$10$WLu02bqWFGC31TtappiZme82ki3/dshNmdrgVbE94EW4GPK8LeIvW', 'komtec.komatsu@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1611832895, NULL, 0, 'Roberson', 'Santos', 'KomTec', '', '');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 

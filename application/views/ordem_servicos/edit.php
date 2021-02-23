@@ -227,9 +227,9 @@
                             </div>
                         </div>
                     </fieldset
-
-                    <input type="hidden" name="ordem_servico_id" value="<?php echo $ordem_servico->ordem_servico_id ?>" />
-
+                    <di class="form-group row">
+                        <input type="hidden" name="ordem_servico_id" value="<?php echo $ordem_servico->ordem_servico_id ?>" />
+                    </di>
                     <div class="mt-3">
                         <button tabindex="Atualizar" type="submit" class="btn btn-outline-success btn-sm" id="btn-cadastrar-venda" form="form">Atualizar</button>
                         <!--                        <button title="Salvar" type="submit" class="btn btn-outline-success btn-sm">Salvar</button>-->
