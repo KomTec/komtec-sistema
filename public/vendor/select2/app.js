@@ -14,6 +14,30 @@ $(document).ready(function () {
         }
     });
 
+    $('.tecnico').select2({
+        placeholder: "Nome.. CPF..",
+        allowClear: true,
+        "language": {
+            "noResults": function () {
+                return '<span class="text-danger">Técnico não encontrado</span> <a href="' + BASE_URL + 'tecnicos/add" target="_blank" class="btn btn-primary btn-sm">Cadastrar</a>';
+            }
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }
+    });
+    $('.carro').select2({
+        placeholder: "Placa..",
+        allowClear: true,
+        "language": {
+            "noResults": function () {
+                return '<span class="text-danger">Carro não encontrado</span> <a href="' + BASE_URL + 'carros/add" target="_blank" class="btn btn-primary btn-sm">Cadastrar</a>';
+            }
+        },
+        escapeMarkup: function (markup) {
+            return markup;
+        }
+    });
     $('.forma-pagamento').select2({
         placeholder: "Forma de pagamento",
         allowClear: true,

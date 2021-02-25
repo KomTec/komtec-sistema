@@ -20,6 +20,7 @@ class Ordem_servicos extends CI_Controller {
             'titulo' => 'Gestão de Ordens de Serviços',
             'styles' => array('vendor/datatables/dataTables.bootstrap4.min.css'),
             'scripts' => array(
+                'vendor/datatables/app.js',
                 'vendor/datatables/jquery.dataTables.min.js',
                 'vendor/datatables/dataTables.bootstrap4.min.js',
                 'vendor/mask/jquery.mask.min.js',
@@ -37,6 +38,129 @@ class Ordem_servicos extends CI_Controller {
         $this->load->view('layout/footer');
     }
 
+    public function add() {
+
+
+
+        $this->form_validation->set_rules('ordem_servico_tecnico_id', '', 'required');
+        $this->form_validation->set_rules('ordem_servico_carro_id', '', 'required');
+        $this->form_validation->set_rules('ordem_servico_cliente_id', '', 'required');
+        $this->form_validation->set_rules('ordem_servico_equipamento_id', '', 'required');
+        $this->form_validation->set_rules('ordem_servico_equipamento_serie', '', 'trim|min_length[4]|max_length[45]');
+        $this->form_validation->set_rules('ordem_servico_marca_id', '', 'required');
+        $this->form_validation->set_rules('ordem_servico_equipamento_serie_motor', '', 'trim|min_length[4]|max_length[25]');
+        $this->form_validation->set_rules('ordem_servico_equipamento_hodometro', '', 'trim|min_length[1]|max_length[20]');
+        $this->form_validation->set_rules('ordem_servico_equipamento_modelo', '', 'trim|min_length[2]|max_length[80]');
+        $this->form_validation->set_rules('ordem_servico_equipamento_defeito', '', 'trim|required|max_length[700]');
+        $this->form_validation->set_rules('ordem_servico_equipamento_pecas', '', 'trim|max_length[300]');
+        $this->form_validation->set_rules('ordem_servico_servico_executado', '', 'trim|required|max_length[700]');
+        $this->form_validation->set_rules('ordem_servico_servico_obs', '', 'trim|max_length[700]');
+        if ($this->form_validation->run()) {
+
+//                echo '<pre>';
+//                print_r('Validado');
+//                exit();
+
+            $ordem_servico_valor_total = str_replace('R$', "", trim($this->input->post('ordem_servico_valor_total')));
+
+            $data = elements(
+                    array(
+                        'ordem_servico_tecnico_id',
+                        'ordem_servico_carro_id',
+                        'ordem_servico_cliente_id',
+                        'ordem_servico_status',
+                        'ordem_servico_equipamento_id',
+                        'ordem_servico_equipamento_serie',
+                        'ordem_servico_marca_id',
+                        'ordem_servico_equipamento_serie_motor',
+                        'ordem_servico_equipamento_hodometro',
+                        'ordem_servico_equipamento_modelo',
+                        'ordem_servico_equipamento_defeito',
+                        'ordem_servico_equipamento_pecas',
+                        'ordem_servico_servico_executado',
+                        'ordem_servico_obs',
+                        'ordem_servico_valor_desconto',
+                        'ordem_servico_valor_total',
+                    ), $this->input->post()
+            );
+
+            $data['ordem_servico_valor_total'] = trim(preg_replace('/\$/', '', $ordem_servico_valor_total));
+
+            $data = html_escape($data);
+
+            $this->core_model->insert('ordens_servicos', $data, TRUE);
+
+            $id_ordem_servico = $this->session->userdata('last_id');
+
+            $servico_id = $this->input->post('servico_id');
+            $servico_quantidade = $this->input->post('servico_quantidade');
+            $servico_desconto = str_replace('%', '', $this->input->post('servico_desconto'));
+
+            $servico_preco = str_replace('R$', '', $this->input->post('servico_preco'));
+            $servico_item_total = str_replace('R$', '', $this->input->post('servico_item_total'));
+
+            $servico_preco = str_replace(',', '', $servico_preco);
+            $servico_item_total = str_replace(',', '', $servico_item_total);
+
+            $qty_servico = count($servico_id);
+
+            //captura o que está vindo do post no campo hidden ordem_servico_id
+            $ordem_servico_id = $this->input->post('ordem_servico_id');
+
+            for ($i = 0; $i < $qty_servico; $i++) {
+
+                $data = array(
+                    'ordem_ts_id_ordem_servico' => $id_ordem_servico,
+                    'ordem_ts_id_servico' => $servico_id[$i],
+                    'ordem_ts_quantidade' => $servico_quantidade[$i],
+                    'ordem_ts_valor_unitario' => $servico_preco[$i],
+                    'ordem_ts_valor_desconto' => $servico_desconto[$i],
+                    'ordem_ts_valor_total' => $servico_item_total[$i],
+                );
+
+                $data = html_escape($data);
+
+//                echo '<pre>';
+//                print_r($data);
+//                exit();
+                //$this->core_model->insert('ordens_servicos', $data, TRUE);
+
+                $this->core_model->insert('ordem_tem_servicos', $data);
+            }
+
+            //Criar recurso PDF
+            redirect('os/imprimir/' . $id_ordem_servico);
+        } else {
+
+            $data = array(
+                'titulo' => 'Cadastrar Nova Ordem de Serviço',
+                'styles' => array(
+                    'vendor/select2/select2.min.css',
+                    'vendor/autocomplete/jquery-ui.css',
+                    'vendor/autocomplete/estilo.css',
+                ),
+                'scripts' => array(
+                    'vendor/autocomplete/jquery-migrate-2.js', //Deve vir primeiro
+                    'vendor/calcx/jquery-calx-sample-2.2.8.min.js',
+                    'vendor/calcx/os.js',
+                    'vendor/select2/select2.min.js',
+                    'vendor/select2/app.js',
+                    'vendor/sweetalert2/sweetalert2.js',
+                    'vendor/autocomplete/jquery-ui.js', //Vem por último
+                ),
+                'clientes' => $this->core_model->get_all('clientes', array('cliente_ativo' => 1)),
+                'equipamentos' => $this->core_model->get_all('equipamentos', array('equipamento_ativo' => 1)),
+                'tecnicos' => $this->core_model->get_all('tecnicos', array('tecnico_ativo' => 1)),
+                'marcas' => $this->core_model->get_all('marcas', array('marca_ativa' => 1)),
+                'carros' => $this->core_model->get_all('carros', array('carro_ativo' => 1)),
+            );
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('ordem_servicos/add');
+            $this->load->view('layout/footer');
+        }
+    }
+
     public function edit($ordem_servico_id = NULL) {
 
         if (!$ordem_servico_id || !$this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id))) {
@@ -45,9 +169,14 @@ class Ordem_servicos extends CI_Controller {
         } else {
 
             $this->form_validation->set_rules('ordem_servico_tecnico_id', '', 'required');
-            //$this->form_validation->set_rules('ordem_servico_carro_id', '', 'required');
+            $this->form_validation->set_rules('ordem_servico_carro_id', '', 'required');
             $this->form_validation->set_rules('ordem_servico_cliente_id', '', 'required');
-            $this->form_validation->set_rules('ordem_servico_forma_pagamento_id', '', 'required');
+
+            $ordem_servico_status = $this->input->post('ordem_servico_status');
+
+            if ($ordem_servico_status == 1) {
+                $this->form_validation->set_rules('ordem_servico_forma_pagamento_id', '', 'required');
+            }
             $this->form_validation->set_rules('ordem_servico_equipamento_id', '', 'required');
             $this->form_validation->set_rules('ordem_servico_equipamento_serie', '', 'trim|min_length[4]|max_length[45]');
             $this->form_validation->set_rules('ordem_servico_marca_id', '', 'required');
@@ -55,7 +184,7 @@ class Ordem_servicos extends CI_Controller {
             $this->form_validation->set_rules('ordem_servico_equipamento_hodometro', '', 'trim|min_length[1]|max_length[20]');
             $this->form_validation->set_rules('ordem_servico_equipamento_modelo', '', 'trim|min_length[2]|max_length[80]');
             $this->form_validation->set_rules('ordem_servico_equipamento_defeito', '', 'trim|required|max_length[700]');
-            $this->form_validation->set_rules('ordem_servico_equipamento_pecas', '', 'trim|required|max_length[300]');
+            $this->form_validation->set_rules('ordem_servico_equipamento_pecas', '', 'trim|max_length[300]');
             $this->form_validation->set_rules('ordem_servico_servico_executado', '', 'trim|required|max_length[700]');
             $this->form_validation->set_rules('ordem_servico_servico_obs', '', 'trim|max_length[700]');
             if ($this->form_validation->run()) {
@@ -88,6 +217,10 @@ class Ordem_servicos extends CI_Controller {
                         ), $this->input->post()
                 );
 
+                if ($ordem_servico_status == 0) {
+                    unset($data['ordem_servico_forma_pagamento_id']);
+                }
+
                 $data['ordem_servico_valor_total'] = trim(preg_replace('/\$/', '', $ordem_servico_valor_total));
 
                 $data = html_escape($data);
@@ -102,8 +235,10 @@ class Ordem_servicos extends CI_Controller {
                 $servico_desconto = str_replace('%', '', $this->input->post('servico_desconto'));
 
                 $servico_preco = str_replace('R$', '', $this->input->post('servico_preco'));
-
                 $servico_item_total = str_replace('R$', '', $this->input->post('servico_item_total'));
+
+                $servico_preco = str_replace(',', '', $servico_preco);
+                $servico_item_total = str_replace(',', '', $servico_item_total);
 
                 $qty_servico = count($servico_id);
 
@@ -133,7 +268,7 @@ class Ordem_servicos extends CI_Controller {
 
                 //Criar recurso PDF
 
-                redirect('os');
+                redirect('os/imprimir/' . $ordem_servico_id);
             } else {
 
                 $data = array(
@@ -174,6 +309,22 @@ class Ordem_servicos extends CI_Controller {
         }
     }
 
+    public function del($ordem_servico_id = NULL) {
+
+        if (!$ordem_servico_id || !$this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id))) {
+            $this->session->set_flashdata('error', 'Ordem de serviço não encontrada!');
+            redirect('os');
+        }
+
+        if ($ordem_servico_id || !$this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id, 'ordem_servico_status' => 0))) {
+            $this->session->set_flashdata('error', 'Não é possível excluir a ordem de serviço em aberto!');
+            redirect('os');
+        }
+
+        $this->core_model->delete('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id));
+        redirect('os');
+    }
+
     public function imprimir($ordem_servico_id = NULL) {
 
         if (!$ordem_servico_id || !$this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id))) {
@@ -183,7 +334,7 @@ class Ordem_servicos extends CI_Controller {
 
             $data = array(
                 'titulo' => 'Escolha uma opção',
-                    //Enviar dados da ordem
+                'ordem_servico' => $this->core_model->get_by_id('ordens_servicos', array('ordem_servico_id' => $ordem_servico_id)),
             );
 
             $this->load->view('layout/header', $data);
@@ -296,20 +447,15 @@ class Ordem_servicos extends CI_Controller {
 
             $html .= '</th>';
 
-
-
             $html .= '</table>';
-
-
 
             $html .= '</body>';
 
             $html .= '</html>';
 
-            echo '<pre>';
-            print_r($html);
-            exit();
-            
+//            echo '<pre>';
+//            print_r($html);
+//            exit();
             // False -> Abre PDF no navegador
             // True -> Faz o download
 

@@ -18,10 +18,9 @@ class Receber extends CI_Controller {
     public function index() {
         $data = array(
             'titulo' => 'Gestão de Contas a Receber',
-            'styles' => array(
-                'vendor/datatables/dataTables.bootstrap4.min.css'
-            ),
+            'styles' => array('vendor/datatables/dataTables.bootstrap4.min.css'),
             'scripts' => array(
+                'vendor/datatables/app.js',
                 'vendor/datatables/jquery.dataTables.min.js',
                 'vendor/datatables/dataTables.bootstrap4.min.js',
                 'vendor/mask/jquery.mask.min.js',
@@ -42,57 +41,57 @@ class Receber extends CI_Controller {
     public function add() {
 
         $this->form_validation->set_rules('conta_receber_cliente_id', '', 'required');
-            $this->form_validation->set_rules('conta_receber_data_vencimento', '', 'required');
-            $this->form_validation->set_rules('conta_receber_valor', '', 'required');
-            $this->form_validation->set_rules('conta_receber_obs', '', 'max_length[300]');
+        $this->form_validation->set_rules('conta_receber_data_vencimento', '', 'required');
+        $this->form_validation->set_rules('conta_receber_valor', '', 'required');
+        $this->form_validation->set_rules('conta_receber_obs', '', 'max_length[300]');
 
-            if ($this->form_validation->run()) {
+        if ($this->form_validation->run()) {
 
-                //Verificar se foi paga
-                $data = elements(
-                        array(
-                            'conta_receber_cliente_id',
-                            'conta_receber_data_vencimento',
-                            'conta_receber_valor',
-                            'conta_receber_status',
-                            'conta_receber_obs',
-                        ), $this->input->post()
-                );
+            //Verificar se foi paga
+            $data = elements(
+                    array(
+                        'conta_receber_cliente_id',
+                        'conta_receber_data_vencimento',
+                        'conta_receber_valor',
+                        'conta_receber_status',
+                        'conta_receber_obs',
+                    ), $this->input->post()
+            );
 
-                $conta_receber_status = $this->input->post('conta_receber_status');
+            $conta_receber_status = $this->input->post('conta_receber_status');
 
-                if ($conta_receber_status == 1) {
-                    $data['conta_receber_data_pagamento'] = date('Y-m-d- H:i:s');
-                }
-
-                $data = html_escape($data);
-
-                $this->core_model->insert('contas_receber', $data);
-
-                redirect('receber');
-            } else {
-                //Erro de validação
-                $data = array(
-                    'titulo' => 'Nova Contas a Receber',
-                    'styles' => array(
-                        'vendor/select2/select2.min.css',
-                        'vendor/datatables/dataTables.bootstrap4.min.css'
-                    ),
-                    'scripts' => array(
-                        'vendor/datatables/jquery.dataTables.min.js',
-                        'vendor/datatables/dataTables.bootstrap4.min.js',
-                        'vendor/select2/select2.min.js',
-                        'vendor/select2/app.js',
-                        'vendor/mask/jquery.mask.min.js',
-                        'vendor/mask/app.js',
-                    ),
-                    'clientes' => $this->core_model->get_all('clientes', array('cliente_ativo' => 1)),
-                );
-
-                $this->load->view('layout/header', $data);
-                $this->load->view('receber/add');
-                $this->load->view('layout/footer');
+            if ($conta_receber_status == 1) {
+                $data['conta_receber_data_pagamento'] = date('Y-m-d- H:i:s');
             }
+
+            $data = html_escape($data);
+
+            $this->core_model->insert('contas_receber', $data);
+
+            redirect('receber');
+        } else {
+            //Erro de validação
+            $data = array(
+                'titulo' => 'Nova Contas a Receber',
+                'styles' => array(
+                    'vendor/select2/select2.min.css',
+                    'vendor/datatables/dataTables.bootstrap4.min.css'
+                ),
+                'scripts' => array(
+                    'vendor/datatables/jquery.dataTables.min.js',
+                    'vendor/datatables/dataTables.bootstrap4.min.js',
+                    'vendor/select2/select2.min.js',
+                    'vendor/select2/app.js',
+                    'vendor/mask/jquery.mask.min.js',
+                    'vendor/mask/app.js',
+                ),
+                'clientes' => $this->core_model->get_all('clientes', array('cliente_ativo' => 1)),
+            );
+
+            $this->load->view('layout/header', $data);
+            $this->load->view('receber/add');
+            $this->load->view('layout/footer');
+        }
     }
 
     public function edit($conta_receber_id = NULL) {
@@ -157,15 +156,15 @@ class Receber extends CI_Controller {
             }
         }
     }
-    
+
     public function del($conta_receber_id = NULL) {
-        
+
         if (!$conta_receber_id || !$this->core_model->get_by_id('contas_receber', array('conta_receber_id' => $conta_receber_id))) {
 
             $this->session->set_flashdata('error', 'Conta não encontrada!');
             redirect('receber');
         }
-        
+
         if ($this->core_model->get_by_id('contas_receber', array('conta_receber_id' => $conta_receber_id, 'conta_receber_status' => 0))) {
 
             $this->session->set_flashdata('info', 'Conta não pode ser excluída, pois está em aberto!');

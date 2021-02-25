@@ -37,7 +37,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Escolha uma opção:</h6>
                 <a title="Gestão de Orçamentos" class="collapse-item" href="<?php echo base_url('orcamentos') ?>"><i class="fas fa-file-invoice-dollar text-gray-900"></i>&nbsp;&nbsp;Orçamentos</a>
-                <a title="Gestão de Vendas" class="collapse-item" href="<?php echo base_url('vendas') ?>"><i class="fas fa-funnel-dollar text-gray-900"></i>&nbsp;&nbsp;Vendas</a> 
+                <a title="Gestão de Vendas" class="collapse-item" href="<?php echo base_url('vendas') ?>"><i class="fas fa-shopping-cart text-gray-900"></i>&nbsp;&nbsp;Vendas</a> 
                 <a title="Gestão de Ordens de Serviços" class="collapse-item" href="<?php echo base_url('os') ?>"><i class="fas fa-tools text-gray-900"></i>&nbsp;&nbsp;Ordens Serviços</a> 
             </div>
         </div>

@@ -18,6 +18,7 @@ class Formas_pagamentos extends CI_Controller {
             'titulo' => 'Gestão de Formas de Pagamentos',
             'styles' => array('vendor/datatables/dataTables.bootstrap4.min.css'),
             'scripts' => array(
+                'vendor/datatables/app.js',
                 'vendor/datatables/jquery.dataTables.min.js',
                 'vendor/datatables/dataTables.bootstrap4.min.js',
                 'vendor/mask/jquery.mask.min.js',

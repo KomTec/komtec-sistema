@@ -16,7 +16,11 @@ class Fornecedores extends CI_Controller {
     public function index() {
         $data = array(
             'titulo' => 'Gestão de Fornecedores',
+            'styles' => array('vendor/datatables/dataTables.bootstrap4.min.css'),
             'scripts' => array(
+                'vendor/datatables/app.js',
+                'vendor/datatables/jquery.dataTables.min.js',
+                'vendor/datatables/dataTables.bootstrap4.min.js',
                 'vendor/mask/jquery.mask.min.js',
                 'vendor/mask/app.js',
             ),
@@ -124,9 +128,9 @@ class Fornecedores extends CI_Controller {
             if ($this->form_validation->run()) {
 
                 $fornecedor_ativo = $this->input->post('fornecedor_ativo');
-                
+
                 if ($this->db->table_exists('produtos')) {
-                    
+
                     if ($fornecedor_ativo == 0 && $this->core_model->get_by_id('produtos', array('produto_fornecedor_id' => $fornecedor_id, 'produto_ativo' => 1))) {
                         $this->session->set_flashdata('info', 'Esse fornecedor não pode ser desativado, pois está sendo utilizado em <i class="fab fa-product-hunt"></i>&nbsp; Produtos');
                         redirect('fornecedores');

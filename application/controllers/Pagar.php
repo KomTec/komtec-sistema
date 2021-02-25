@@ -18,10 +18,9 @@ class Pagar extends CI_Controller {
     public function index() {
         $data = array(
             'titulo' => 'Gestão de Contas a Pagar',
-            'styles' => array(
-                'vendor/datatables/dataTables.bootstrap4.min.css'
-            ),
+            'styles' => array('vendor/datatables/dataTables.bootstrap4.min.css'),
             'scripts' => array(
+                'vendor/datatables/app.js',
                 'vendor/datatables/jquery.dataTables.min.js',
                 'vendor/datatables/dataTables.bootstrap4.min.js',
                 'vendor/mask/jquery.mask.min.js',
@@ -157,15 +156,15 @@ class Pagar extends CI_Controller {
             }
         }
     }
-    
+
     public function del($conta_pagar_id = NULL) {
-        
+
         if (!$conta_pagar_id || !$this->core_model->get_by_id('contas_pagar', array('conta_pagar_id' => $conta_pagar_id))) {
 
             $this->session->set_flashdata('error', 'Conta não encontrada!');
             redirect('pagar');
         }
-        
+
         if ($this->core_model->get_by_id('contas_pagar', array('conta_pagar_id' => $conta_pagar_id, 'conta_pagar_status' => 0))) {
 
             $this->session->set_flashdata('info', 'Conta não pode ser excluída, pois está em aberto!');

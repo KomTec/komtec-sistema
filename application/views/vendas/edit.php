@@ -12,7 +12,7 @@
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php echo base_url('os'); ?>">Ordens de Serviços</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url('vendas'); ?>">Vendas</a></li>
                 <li class="breadcrumb-item"><a href="#"><?php echo $titulo; ?></a></li>
             </ol>					
         </nav>
@@ -27,7 +27,7 @@
 
                     <fieldset id="vendas" class="mt-4 border p-2">
 
-                        <legend class="font-small"><i class="fas fa-tools"></i>&nbsp;&nbsp;Dados da Ordem de Serviços</legend>
+                        <legend class="font-small"><i class="fas fa-shopping-cart text-gray-900"></i>&nbsp;&nbsp;Dados da Venda</legend>
 
                         <div class="form-group row">
                             <div class="col-md-4">

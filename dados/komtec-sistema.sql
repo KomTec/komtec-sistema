@@ -294,14 +294,18 @@ CREATE TABLE IF NOT EXISTS `ordem_tem_servicos` (
   KEY `fk_ordem_ts_id_ordem_servico` (`ordem_ts_id_ordem_servico`),
   CONSTRAINT `fk_ordem_ts_id_ordem_servico` FOREIGN KEY (`ordem_ts_id_ordem_servico`) REFERENCES `ordens_servicos` (`ordem_servico_id`) ON DELETE CASCADE,
   CONSTRAINT `fk_ordem_ts_id_servico` FOREIGN KEY (`ordem_ts_id_servico`) REFERENCES `servicos` (`servico_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1 COMMENT='Tabela de relacionamento entre as tabelas servicos e ordem_servico';
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=latin1 COMMENT='Tabela de relacionamento entre as tabelas servicos e ordem_servico';
 
--- Copiando dados para a tabela komtec-sistema.ordem_tem_servicos: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.ordem_tem_servicos: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `ordem_tem_servicos` DISABLE KEYS */;
 INSERT INTO `ordem_tem_servicos` (`ordem_ts_id`, `ordem_ts_id_servico`, `ordem_ts_id_ordem_servico`, `ordem_ts_quantidade`, `ordem_ts_valor_unitario`, `ordem_ts_valor_desconto`, `ordem_ts_valor_total`) VALUES
-	(57, 1, 1, 100, ' 150.00', '0 ', ' 15,000.00'),
-	(58, 3, 1, 20, ' 65.00', '0 ', ' 1,300.00'),
-	(59, 2, 1, 2000, ' 2.30', '0 ', ' 4,600.00');
+	(77, 1, 7, 15, ' 150.00', '0 ', ' 2250.00'),
+	(78, 2, 7, 1318, ' 2.30', '0 ', ' 3031.40'),
+	(79, 3, 7, 13, ' 65.00', '80 ', ' 169.00'),
+	(83, 1, 8, 13, ' 150.00', '0 ', ' 1950.00'),
+	(84, 1, 1, 10, ' 150.00', '0 ', ' 1500.00'),
+	(85, 2, 1, 1000, ' 2.30', '0 ', ' 2300.00'),
+	(86, 3, 1, 10, ' 65.00', '0 ', ' 650.00');
 /*!40000 ALTER TABLE `ordem_tem_servicos` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela komtec-sistema.ordens_servicos
@@ -342,24 +346,26 @@ CREATE TABLE IF NOT EXISTS `ordens_servicos` (
   CONSTRAINT `fk_ordem_servico_id_forma_pagto` FOREIGN KEY (`ordem_servico_forma_pagamento_id`) REFERENCES `formas_pagamentos` (`forma_pagamento_id`),
   CONSTRAINT `fk_ordem_servico_id_marca` FOREIGN KEY (`ordem_servico_marca_id`) REFERENCES `marcas` (`marca_id`),
   CONSTRAINT `fk_ordem_servico_id_tecnico` FOREIGN KEY (`ordem_servico_tecnico_id`) REFERENCES `tecnicos` (`tecnico_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela komtec-sistema.ordens_servicos: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.ordens_servicos: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `ordens_servicos` DISABLE KEYS */;
 INSERT INTO `ordens_servicos` (`ordem_servico_id`, `ordem_servico_forma_pagamento_id`, `ordem_servico_cliente_id`, `ordem_servico_equipamento_id`, `ordem_servico_tecnico_id`, `ordem_servico_marca_id`, `ordem_servico_carro_id`, `ordem_servico_data_emissao`, `ordem_servico_data_inicio`, `ordem_servico_data_fechamento`, `ordem_servico_data_conclusao`, `ordem_servico_equipamento_serie`, `ordem_servico_equipamento_serie_motor`, `ordem_servico_equipamento_hodometro`, `ordem_servico_equipamento_modelo`, `ordem_servico_equipamento_pecas`, `ordem_servico_equipamento_defeito`, `ordem_servico_servico_executado`, `ordem_servico_valor_desconto`, `ordem_servico_valor_total`, `ordem_servico_status`, `ordem_servico_obs`, `ordem_servico_data_alteracao`) VALUES
-	(1, 6, 2, 1, 1, 2, 1, '2021-02-21 21:07:12', '2021-02-21 21:07:12', '2021-02-21 21:07:12', '21/02/2021', 'B10123', '123456', '4034', 'PC200-8', 'Kit Revisão de 4000 horas', 'Revisão de 4000 horas vencida', 'Executado a revisão de 4000 horas conforme manual de operação e manutenção', 'R$ 0.00', '20,900.00', 0, 'Testando novamente.', '2021-02-23 10:53:00');
+	(1, 6, 2, 1, 1, 2, 1, '2021-02-21 21:07:12', '2021-02-21 21:07:12', '2021-02-21 21:07:12', '21/02/2021', 'B10123', '123456', '4034', 'PC200-8', 'Kit Revisão de 4000 horas', 'Revisão de 4000 horas vencida', 'Executado a revisão de 4000 horas conforme manual de operação e manutenção', 'R$ 0.00', '4,450.00', 0, 'Testando novamente.', '2021-02-24 00:27:29'),
+	(7, 2, 3, 2, 2, 2, 4, '2021-02-24 00:21:45', '2021-02-24 00:21:45', '2021-02-24 00:21:45', NULL, 'B10432', '23456789', '2001', 'WA200-5', 'Kit Revisão 2000 horas', 'Revisão de 2000 horas vencida', 'Executada revisão de 2000 horas conforme manual de operação e manutenção', 'R$ 676.00', '5,450.40', 1, 'Operador Pedro acompanhou o serviço', '2021-02-24 00:26:18'),
+	(8, NULL, 3, 4, 3, 2, 5, '2021-02-24 00:54:00', '2021-02-24 00:54:00', '2021-02-24 00:54:00', NULL, 'B13456', '23456789', '5798', 'GD655-5', '', 'Equipamento não engata marchas', 'Foi limpo os conectores do módulo da transmissão, conferido as pressões e corrigido falha elétrica no chicote da transmissão.', 'R$ 0.00', '1,950.00', 0, 'Equipamento foi testado por 120 minutos e liberado para o trabalho.', NULL);
 /*!40000 ALTER TABLE `ordens_servicos` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela komtec-sistema.produtos
 CREATE TABLE IF NOT EXISTS `produtos` (
   `produto_id` int(11) NOT NULL AUTO_INCREMENT,
-  `produto_nome` varchar(45) DEFAULT NULL,
-  `produto_codigo` varchar(45) DEFAULT NULL,
-  `produto_codigo_original` varchar(45) DEFAULT NULL,
-  `produto_data_cadastro` datetime DEFAULT NULL,
   `produto_categoria_id` int(11) NOT NULL,
   `produto_marca_id` int(11) NOT NULL,
   `produto_fornecedor_id` int(11) NOT NULL,
+  `produto_codigo` varchar(45) DEFAULT NULL,
+  `produto_codigo_original` varchar(25) DEFAULT NULL,
+  `produto_data_cadastro` datetime DEFAULT NULL,
+  `produto_nome` varchar(45) DEFAULT NULL,
   `produto_descricao` varchar(145) DEFAULT NULL,
   `produto_unidade` varchar(25) DEFAULT NULL,
   `produto_codigo_barras` varchar(45) DEFAULT NULL,
@@ -372,18 +378,18 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   `produto_obs` tinytext,
   `produto_data_alteracao` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`produto_id`),
-  KEY `produto_categoria_id` (`produto_categoria_id`,`produto_marca_id`,`produto_fornecedor_id`),
-  KEY `fk_produto_marca_id` (`produto_marca_id`),
-  KEY `fk_produto_forncedor_id` (`produto_fornecedor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  KEY `fk_produto_id_categoria` (`produto_categoria_id`),
+  KEY `fk_produto_id_marca` (`produto_marca_id`),
+  KEY `fk_produto_id_forncedor` (`produto_fornecedor_id`),
+  CONSTRAINT `fk_produto_id_categoria` FOREIGN KEY (`produto_categoria_id`) REFERENCES `categorias` (`categoria_id`),
+  CONSTRAINT `fk_produto_id_forncedor` FOREIGN KEY (`produto_fornecedor_id`) REFERENCES `fornecedores` (`fornecedor_id`),
+  CONSTRAINT `fk_produto_id_marca` FOREIGN KEY (`produto_marca_id`) REFERENCES `marcas` (`marca_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Copiando dados para a tabela komtec-sistema.produtos: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela komtec-sistema.produtos: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
-INSERT INTO `produtos` (`produto_id`, `produto_nome`, `produto_codigo`, `produto_codigo_original`, `produto_data_cadastro`, `produto_categoria_id`, `produto_marca_id`, `produto_fornecedor_id`, `produto_descricao`, `produto_unidade`, `produto_codigo_barras`, `produto_ncm`, `produto_preco_custo`, `produto_preco_venda`, `produto_estoque_minimo`, `produto_qtde_estoque`, `produto_ativo`, `produto_obs`, `produto_data_alteracao`) VALUES
-	(1, 'Junta', '72495380', '20Y1513442', '2021-01-30 08:14:19', 1, 2, 1, 'Junta do balancin', 'UN', '4545', '48232099', '58,33', '170,00', '2', '2', 1, 'Produto auditado e liberado.', '2021-02-02 15:23:22'),
-	(2, 'Filtro', '50412637', '20Y1513445', '2021-01-30 08:14:21', 7, 2, 1, 'Filtro principal de combustível', 'UN', '9999', '48232099', '37,00', '69,87', '1', '46', 1, 'Produto auditado e liberado.', '2021-02-02 15:22:37'),
-	(3, 'Filtro', '41697502', '20Y1513443', '2021-01-30 08:14:22', 7, 2, 1, 'Filtro principal de combustível', 'UN', '9999', '48232099', '27,90', '63,51', '2', '3', 1, 'Produto auditado e liberado.', '2021-02-02 15:23:07'),
-	(4, 'Correia', '10867453', '2051513423', '2021-02-02 15:34:31', 1, 2, 1, 'Correia do motor', 'UN', '060739484637299840551186252173', '40101900', '47,90', '110,99', '1', '1', 1, 'Produto analisado e liberado.', '2021-02-03 11:06:34');
+INSERT INTO `produtos` (`produto_id`, `produto_categoria_id`, `produto_marca_id`, `produto_fornecedor_id`, `produto_codigo`, `produto_codigo_original`, `produto_data_cadastro`, `produto_nome`, `produto_descricao`, `produto_unidade`, `produto_codigo_barras`, `produto_ncm`, `produto_preco_custo`, `produto_preco_venda`, `produto_estoque_minimo`, `produto_qtde_estoque`, `produto_ativo`, `produto_obs`, `produto_data_alteracao`) VALUES
+	(2, 1, 2, 1, '76034289', '6754-79-6140', NULL, 'Filtro', 'Filtro Principal de Combustível', 'UN', '3202902913418608456654177', '1234567890', '27,00', '69,00', '5', '20', 1, 'Falta o NCM do produto', '2021-02-24 08:16:55');
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela komtec-sistema.servicos
@@ -497,7 +503,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Copiando dados para a tabela komtec-sistema.users: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`, `cell_phone`) VALUES
-	(1, '127.0.0.1', 'administrator', '$2y$12$URk6yGldU9FdWW3Q7FyipOn1R7TU8CeTgw1VJexqvCEn3.MPXHvV6', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1614107097, 1, 'Admin', 'istrator', 'ADMIN', '0', NULL),
+	(1, '127.0.0.1', 'administrator', '$2y$12$URk6yGldU9FdWW3Q7FyipOn1R7TU8CeTgw1VJexqvCEn3.MPXHvV6', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1614215321, 1, 'Admin', 'istrator', 'ADMIN', '0', NULL),
 	(2, '::1', 'admin', '$2y$10$WLu02bqWFGC31TtappiZme82ki3/dshNmdrgVbE94EW4GPK8LeIvW', 'komtec.komatsu@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1611832895, NULL, 0, 'Roberson', 'Santos', 'KomTec', '', '');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
@@ -520,6 +526,55 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 	(1, 1, 1),
 	(2, 1, 2);
 /*!40000 ALTER TABLE `users_groups` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela komtec-sistema.vendas
+CREATE TABLE IF NOT EXISTS `vendas` (
+  `venda_id` int(11) NOT NULL AUTO_INCREMENT,
+  `venda_cliente_id` int(11) DEFAULT NULL,
+  `venda_forma_pagamento_id` int(11) DEFAULT NULL,
+  `venda_vendedor_id` int(11) DEFAULT NULL,
+  `venda_tipo` tinyint(1) DEFAULT NULL,
+  `venda_status` tinyint(1) DEFAULT NULL,
+  `venda_data_emissao` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `venda_valor_desconto` varchar(25) DEFAULT NULL,
+  `venda_valor_total` varchar(25) DEFAULT NULL,
+  `venda_data_alteracao` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`venda_id`),
+  KEY `fk_venda_cliente_id` (`venda_cliente_id`),
+  KEY `fk_venda_forma_pagto_id` (`venda_forma_pagamento_id`),
+  KEY `fk_venda_vendedor_id` (`venda_vendedor_id`),
+  CONSTRAINT `fk_venda_cliente_id` FOREIGN KEY (`venda_cliente_id`) REFERENCES `clientes` (`cliente_id`),
+  CONSTRAINT `fk_venda_forma_pagto_id` FOREIGN KEY (`venda_forma_pagamento_id`) REFERENCES `formas_pagamentos` (`forma_pagamento_id`),
+  CONSTRAINT `fk_venda_vendedor_id` FOREIGN KEY (`venda_vendedor_id`) REFERENCES `vendedores` (`vendedor_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- Copiando dados para a tabela komtec-sistema.vendas: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `vendas` DISABLE KEYS */;
+INSERT INTO `vendas` (`venda_id`, `venda_cliente_id`, `venda_forma_pagamento_id`, `venda_vendedor_id`, `venda_tipo`, `venda_status`, `venda_data_emissao`, `venda_valor_desconto`, `venda_valor_total`, `venda_data_alteracao`) VALUES
+	(1, 1, 1, 1, NULL, NULL, '2021-02-24 12:53:19', NULL, '69.00', '2021-02-24 12:55:56');
+/*!40000 ALTER TABLE `vendas` ENABLE KEYS */;
+
+-- Copiando estrutura para tabela komtec-sistema.venda_produtos
+CREATE TABLE IF NOT EXISTS `venda_produtos` (
+  `id_venda_produtos` int(11) NOT NULL AUTO_INCREMENT,
+  `venda_produto_id_venda` int(11) DEFAULT NULL,
+  `venda_produto_id_produto` int(11) DEFAULT NULL,
+  `venda_produto_quantidade` varchar(15) DEFAULT NULL,
+  `venda_produto_valor_unitario` varchar(20) DEFAULT NULL,
+  `venda_produto_desconto` varchar(10) DEFAULT NULL,
+  `venda_produto_valor_total` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id_venda_produtos`),
+  KEY `fk_venda_produtos_id_produto` (`venda_produto_id_produto`),
+  KEY `fk_venda_produtos_id_venda` (`venda_produto_id_venda`),
+  CONSTRAINT `fk_venda_produtos_id_produto` FOREIGN KEY (`venda_produto_id_produto`) REFERENCES `produtos` (`produto_id`),
+  CONSTRAINT `fk_venda_produtos_id_venda` FOREIGN KEY (`venda_produto_id_venda`) REFERENCES `vendas` (`venda_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- Copiando dados para a tabela komtec-sistema.venda_produtos: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `venda_produtos` DISABLE KEYS */;
+INSERT INTO `venda_produtos` (`id_venda_produtos`, `venda_produto_id_venda`, `venda_produto_id_produto`, `venda_produto_quantidade`, `venda_produto_valor_unitario`, `venda_produto_desconto`, `venda_produto_valor_total`) VALUES
+	(1, 1, 2, '1', '69.00', NULL, '69.00');
+/*!40000 ALTER TABLE `venda_produtos` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela komtec-sistema.vendedores
 CREATE TABLE IF NOT EXISTS `vendedores` (

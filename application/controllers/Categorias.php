@@ -16,9 +16,13 @@ class Categorias extends CI_Controller {
     public function index() {
         $data = array(
             'titulo' => 'Gestão de Categorias',
+            'styles' => array('vendor/datatables/dataTables.bootstrap4.min.css'),
             'scripts' => array(
+                 'vendor/datatables/app.js',
+                'vendor/datatables/jquery.dataTables.min.js',
+                'vendor/datatables/dataTables.bootstrap4.min.js',
                 'vendor/mask/jquery.mask.min.js',
-                'vendor/mask/app.js',
+                'vendor/mask/app.js',                 
             ),
             'categorias' => $this->core_model->get_all('categorias'),
         );

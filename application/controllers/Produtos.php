@@ -18,7 +18,11 @@ class Produtos extends CI_Controller {
     public function index() {
         $data = array(
             'titulo' => 'Gestão de Produtos',
+            'styles' => array('vendor/datatables/dataTables.bootstrap4.min.css'),
             'scripts' => array(
+                'vendor/datatables/app.js',
+                'vendor/datatables/jquery.dataTables.min.js',
+                'vendor/datatables/dataTables.bootstrap4.min.js',
                 'vendor/mask/jquery.mask.min.js',
                 'vendor/mask/app.js',
             ),
@@ -54,6 +58,7 @@ class Produtos extends CI_Controller {
                         'produto_descricao',
                         'produto_id',
                         'produto_marca_id',
+                        'produto_categoria_id',
                         'produto_fornecedor_id',
                         'produto_unidade',
                         'produto_preco_custo',
@@ -120,6 +125,7 @@ class Produtos extends CI_Controller {
                             'produto_descricao',
                             'produto_id',
                             'produto_marca_id',
+                            'produto_categoria_id',
                             'produto_fornecedor_id',
                             'produto_unidade',
                             'produto_preco_custo',
